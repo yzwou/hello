@@ -101,3 +101,12 @@ p {
     padding: 10px 0; /* 上下内边距 */
     z-index: 1000; /* 确保位于其他元素之上 */
 }
+
+.starter{
+    position: absolute;
+    left: 5%;
+}
+
+.annotation{
+    left: 3%
+}
