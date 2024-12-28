@@ -80,9 +80,24 @@ p {
     box-shadow: 0 4px 12px rgba(255, 255, 255, 0.4);
 }
 
-.t{
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    text-align: center;
+#talk {
+    position: fixed;
+    bottom: 0; /* 距离底部为 0 */
+    left: 0; /* 距离左侧为 0 */
+    width: 100%; /* 占满宽度 */
+    color: white;
+    text-align: center; /* 居中对齐文字 */
+    padding: 10px 0; /* 上下内边距 */
+    z-index: 1000; /* 确保位于其他元素之上 */
+}
+
+#email{
+    position: fixed;
+    bottom: 5%; /* 距离底部为 0 */
+    left: 3%; /* 距离左侧为 0 */
+    width: 100%; /* 占满宽度 */
+    color: white;
+    text-align: left; /* 居中对齐文字 */
+    padding: 10px 0; /* 上下内边距 */
+    z-index: 1000; /* 确保位于其他元素之上 */
 }
