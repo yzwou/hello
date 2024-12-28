@@ -1,0 +1,82 @@
+/* styles.css */
+
+/* 全局样式 */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Arial', sans-serif;
+    background: linear-gradient(135deg, #2b95f7, #00d27f);
+    color: white;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* 背景容器 */
+.background {
+    width: 80%;
+    height: 80%;
+    left: 20%;
+    top: 10%;
+    bottom: 60%;
+    /*justify-content: left;*/
+    /*align-items: ;*/
+}
+
+/* 内容区域 */
+.content {
+    text-align: center;
+    background: rgba(255, 255, 255, 0.1);
+    padding: 30px 40px;
+    border-radius: 12px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+}
+
+/* 标题 */
+h1 {
+    font-size: 2.5rem;
+    margin-bottom: 10px;
+    color: #fff;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+/* 描述文字 */
+p {
+    margin-bottom: 20px;
+    font-size: 1.2rem;
+    color: #e0e0e0;
+}
+
+/* 按钮容器 */
+.buttons {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 10px;
+}
+
+/* 按钮样式 */
+.button {
+    text-decoration: none;
+    padding: 10px 20px;
+    font-size: 1rem;
+    color: #fff;
+    background: rgba(255, 255, 255, 0.2);
+    border: 2px solid rgba(255, 255, 255, 0.4);
+    border-radius: 8px;
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+    cursor: pointer;
+}
+
+.button:hover {
+    background: rgba(255, 255, 255, 0.4);
+    border-color: #fff;
+    color: #000;
+    box-shadow: 0 4px 12px rgba(255, 255, 255, 0.5);
+}
