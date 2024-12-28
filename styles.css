@@ -9,7 +9,7 @@
 
 body {
     font-family: 'Arial', sans-serif;
-    background: linear-gradient(135deg, #2b95f7, #00d27f);
+    background: linear-gradient(135deg, #00972b, #5484ff);
     color: white;
     height: 100vh;
     display: flex;
@@ -70,13 +70,12 @@ p {
     border: 2px solid rgba(255, 255, 255, 0.4);
     border-radius: 8px;
     transition: all 0.3s ease;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
     cursor: pointer;
 }
 
 .button:hover {
-    background: rgba(255, 255, 255, 0.4);
+    background: rgba(255, 255, 255, 0.3);
     border-color: #fff;
-    color: #000;
-    box-shadow: 0 4px 12px rgba(255, 255, 255, 0.5);
+    box-shadow: 0 4px 12px rgba(255, 255, 255, 0.4);
 }
