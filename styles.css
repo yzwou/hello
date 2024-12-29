@@ -17,9 +17,15 @@ body {
 }
 
 /* 背景容器 */
-.background {
-    text-align: center;
-    padding: 20px;
+.download-background {
+    position: relative;
+    right: 10%;
+    width: 120%;
+    height: 100%;
+    top: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 /* 内容区域 */
@@ -106,12 +112,12 @@ p {
     left: 5cap;
 }
 
-.hmcl p {
+.starter p {
     position: relative;
     left: 5cap;
-    font-size: 1.2rem;
     color: #fff;
-    margin: 0; /* 移除默认段落间距 */
+    font-size: 25px;
+    margin: 5px; /* 移除默认段落间距 */
 }
 
 
