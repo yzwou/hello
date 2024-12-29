@@ -14,6 +14,7 @@ body {
     display: flex;
     flex-direction: column; /* 页面内容从上到下排列 */
     justify-content: space-between; /* 自动将顶部和底部分隔 */
+    width: 100%;
 }
 
 /* 背景容器 */
@@ -95,7 +96,7 @@ p {
     font-size: 25px;
 }
 
-.hmcl {
+.hmcl, .pcl, .official{
     display: flex;
     align-items: center; /* 图片和文字垂直居中 */
     justify-content: flex-start; /* 图片和文字水平对齐 */
@@ -103,7 +104,7 @@ p {
     padding: 20px;
 }
 
-.hmcl img {
+.starter img {
     position: relative;
     width: 50%; /* 控制图片宽度 */
     height: auto; /* 保持宽高比 */
