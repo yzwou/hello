@@ -14,17 +14,18 @@ body {
     display: flex;
     flex-direction: column; /* 页面内容从上到下排列 */
     justify-content: space-between; /* 自动将顶部和底部分隔 */
-    width: 100%;
+    width: 95%;
 }
 
 /* 背景容器 */
 .download-background {
     position: relative;
-    height: 120%;
+    height: 100%;
     top: 20px;
     display: flex;
     justify-content: center;
     align-items: center;
+    left: 3%;
 }
 
 /* 内容区域 */
