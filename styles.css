@@ -145,7 +145,7 @@ p {
 #suggests button {
     position: relative;
     top: 8cap;
-    right: 30%;
+    left:50%;
     background: #d0ffd3;
     border-color: #001d6a;
     width: 120px;
