@@ -31,13 +31,15 @@ document.getElementById("suggests").addEventListener("submit", (e) => {
     storeData(message); // 调用函数上传数据
 });
 
-// 调用后端 API
-document.getElementById('send-request').addEventListener('click', async () => {
-    const response = await fetch('http://8.136.126.91:5000/api/endpoint', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ data: '测试数据' })
-    });
-    const result = await response.json();
-    alert('服务器返回: ' + result.message);
-});
+// get weather
+window.onload = async () => {
+    try {
+        // 替换为您的 Flask 后端 API 地址
+        const response = await fetch('http://8.136.126.91:5000/api/weather');
+        const data = await response.json();
+        document.getElementById('weather-result').textContent = data.weather;
+    } catch (error) {
+        document.getElementById('weather-result').textContent = '无法获取天气信息，请稍后重试。';
+        console.error(error);
+    }
+};
