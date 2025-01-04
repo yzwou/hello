@@ -24,3 +24,4 @@ document.querySelector('.hmcl').addEventListener('click', function() {
     window.location.href = 'https://wwre.lanzouq.com/iEpJ02jbjd8d';
 });
 
+
