@@ -32,14 +32,16 @@ document.getElementById("suggests").addEventListener("submit", (e) => {
 });
 
 // get weather
-window.onload = async () => {
-    try {
-        // 替换为您的 Flask 后端 API 地址
-        const response = await fetch('https://8.136.126.91:5000/api/weather');
-        const data = await response.json();
-        document.getElementById('weather-result').textContent = data.weather;
-    } catch (error) {
-        document.getElementById('weather-result').textContent = '无法获取天气信息，请稍后重试。';
-        console.error(error);
-    }
-};
+// window.onload = async () => {
+//     setTimeout(async () => {
+//         try {
+//             // 替换为您的 Flask 后端 API 地址
+//             const response = await fetch('https://8.136.126.91:5000/api/weather');
+//             const data = await response.json();
+//             document.getElementById('weather-result').textContent = data.weather;
+//         } catch (error) {
+//             document.getElementById('weather-result').textContent = '无法获取天气信息，请稍后重试。';
+//             console.error(error);
+//         }
+//     }, 10000);
+// };
