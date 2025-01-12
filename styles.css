@@ -14,22 +14,20 @@ body {
     display: flex;
     flex-direction: column; /* 页面内容从上到下排列 */
     justify-content: space-between; /* 自动将顶部和底部分隔 */
-    width: 93%;
+    width: 66%;
 }
 
 /* 背景容器 */
-.download-background {
-    position: relative;
-    height: 100%;
-    top: 20px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    left: 3%;
-}
+
 
 /* 内容区域 */
 .content {
+    position: relative;
+    height: 100%;
+    top: 20px;
+    justify-content: center;
+    align-items: center;
+    left: 20%;
     text-align: center;
     background: rgba(255, 255, 255, 0.1);
     padding: 30px 40px;
@@ -84,8 +82,13 @@ p {
     position: relative;
     text-align: center;
     top: 15px;
-    left: 0;
-    font-size: 30px;
+    left: 10%;
+    font-size: 35px;
+}
+.starter{
+    position: relative;
+    left: 15%;
+    top: 16cap;
 }
 
 /* 图片和文字布局 */
@@ -105,7 +108,7 @@ p {
 
 .starter img {
     position: relative;
-    width: 50%; /* 控制图片宽度 */
+    width: 60%; /* 控制图片宽度 */
     height: auto; /* 保持宽高比 */
     border-radius: 8px; /* 可选：让图片边角圆滑 */
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* 图片的阴影效果 */
@@ -114,7 +117,7 @@ p {
 
 .starter p {
     position: relative;
-    left: 5cap;
+    left: 6cap;
     color: #fff;
     font-size: 25px;
     margin: 5px; /* 移除默认段落间距 */
@@ -162,4 +165,10 @@ p {
 #weather-result{
     position: relative;
     text-align: center;
+}
+
+#search_box-cfm{
+    position: relative;
+    top: 8cap;
+    left: 50%;
 }
