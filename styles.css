@@ -27,7 +27,7 @@ body {
     top: 20px;
     justify-content: center;
     align-items: center;
-    left: 20%;
+    left: 25%;
     text-align: center;
     background: rgba(255, 255, 255, 0.1);
     padding: 30px 40px;
@@ -151,22 +151,24 @@ p {
     border-color: #ffffff;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
-#suggests button {
+.other-button {
     position: relative;
     top: 5cap;
-    left:50%;
-    background: #d0ffd3;
-    border-color: #001d6a;
+    color: #ffffff;
+    background: rgba(150, 255, 171, 0.2);
     width: 120px;
     height: 60px;
+    left: 1cap;
     border-radius: 10px;
     font-size: 20px;
     transition: all 0.3s ease;
 }
-#suggests button:hover {
-    border-color: #c1ffbe;
+.other-button:hover {
+    border-color: #000000;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
+#suggests button {left:50%;}
+#search_box-cfm button {left: 20%}
 
 #weather-result{
     position: relative;
@@ -177,4 +179,15 @@ p {
     position: relative;
     top: 8cap;
     left: 50%;
+}
+
+#search_cfm{
+    position: relative;
+    right: 15%;
+    width: 82%;
+    height: 100px;
+    border-radius: 5px;
+    font-size: 20px;
+    border-color: #009bff;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
