@@ -127,7 +127,7 @@ p {
 /* 底部固定文字 */
 .email, .talk {
     position: relative;
-    left: 20%;
+    left: 25%;
     text-align: center;
     font-size: 20px;
     color: white;
@@ -137,17 +137,17 @@ p {
 #suggests{
     position: relative;
     top: 16cap;
-    left: 17%;
+    left: 20%;
 }
 
 #suggests input {
     position: relative;
-    left: 12%;
+    top: 3cap;
+    left: 15%;
     width: 82%;
     height: 100px;
     border-radius: 5px;
     font-size: 20px;
-    background-color: #ffd0d0;
     border-color: #ffffff;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
@@ -190,4 +190,19 @@ p {
     font-size: 20px;
     border-color: #009bff;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.sr{
+    position: relative;
+    text-align: center;
+}
+
+#sr_background{
+    position: relative;
+    top: 20cap;
+    left: 25%;
+    background: rgba(255, 255, 255, 0.1);
+    padding: 30px 40px;
+    border-radius: 12px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
 }

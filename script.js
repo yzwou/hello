@@ -2,26 +2,29 @@ function redirectTo(url) {
     window.location.href = url; // 跳转到指定的URL
 }
 
-// 监听 ID 为 ys 的按钮
-document.getElementById('ys').addEventListener('click', function() {
-    window.alert('原神启动！');
-    window.location.href = 'https://ys.mihoyo.com/';
+document.addEventListener('DOMContentLoaded', function() {
+    // 获取所有带有 class 'button' 的按钮
+    const buttons = document.querySelectorAll('.button');
+
+    // 为每个按钮绑定事件
+    buttons.forEach(button => {
+        button.addEventListener('click', function() {
+            const url = button.getAttribute('data-url');
+            const message = button.getAttribute('data-message');
+
+            // 弹出提示框
+            if (message) {
+                window.alert(message);
+            }
+
+            // 如果有 URL，跳转到该地址
+            if (url) {
+                window.location.href = url;
+            }
+        });
+    });
 });
-document.querySelector('.d_java').addEventListener('click', function() {
-    window.alert('将进入JDK官网下载Java，下载速度可能较慢');
-    window.location.href = 'https://www.oracle.com/cn/java/technologies/downloads/#jdk20-windows';
-});
-document.querySelector('.pcl').addEventListener('click', function() {
-    window.alert('建议使用PCL2而不是PCL 1');
-    window.location.href = 'https://wwre.lanzouq.com/iEpJ02jbjd8d';
-});
-document.querySelector('.pcl2').addEventListener('click', function() {
-    window.alert('访问密码：pcl2');
-    window.location.href = 'https://ltcat.lanzouv.com/b0aj6gsid';
-});
-document.querySelector('.hmcl').addEventListener('click', function() {
-    window.alert('访问密码：hmcl');
-    window.location.href = 'https://wwre.lanzouq.com/iEpJ02jbjd8d';
-});
+
+
 
 
