@@ -8,37 +8,36 @@ headers = {
                   'Chrome/91.0.4472.124 Safari/537.36'
 }
 
-
 chrome_options = Options()
 chrome_options.add_argument('blink-settings=imagesEnabled=false')  # 不加载图片, 提升速度
 
 
 # 定义爬虫函数
 def get_cfm(mod_name, pages=1):
-    href, span_text, loader = '', '', ''
     url = f'https://www.curseforge.com/minecraft/search?page={pages}&pageSize=20&sortBy=relevancy&class=mc-mods&search={mod_name}'
     driver = webdriver.Chrome()  # 启动 Chrome 浏览器
     driver.get(url)  # 访问目标网页
-    time.sleep(5)  # 等待 JavaScript 加载完成
+    time.sleep(1)  # 等待 JavaScript 加载完成
     html = driver.page_source  # 获取网页源代码
     driver.quit()  # 关闭浏览器
 
     # 解析 HTML
     soup = BeautifulSoup(html, 'html.parser')
     div_tags = soup.find_all('div', class_='project-card')  # 查找所有符合条件的 div 标签
-    results = []
+    href, name, loader, results = '', '', '', []
     for div in div_tags:
         a_tag = div.find('a', class_='name')  # 查找 div 内的 a 标签
         if a_tag:  # 如果 a 标签存在
             href = a_tag.get('href')  # 获取 href 属性
             span = a_tag.find('span', class_='ellipsis')  # 查找 a 标签中的 span
-            span_text = span.text if span else "N/A"  # 如果 span 存在，获取文本，否则设置为 "N/A"
+            name = span.text if span else "N/A"  # 如果 span 存在，获取文本，否则设置为 "N/A"
         version = div.find('li', class_='detail-game-version')
         loader = div.find('li', class_='detail-flavor')
-        if loader:  loader = loader.text.strip()
+        if loader:
+            loader = loader.text.strip()
         if version:
             version = version.text.strip()
-            results.append((span_text, href, loader, version))
+        results.append((name, href, loader, version))
 
     return results
 
@@ -47,12 +46,23 @@ def get_mrm(mod_name, pages=1):
     url = f'https://modrinth.com/mods?q={mod_name}&page={pages}'
     driver = webdriver.Chrome()  # 启动 Chrome 浏览器
     driver.get(url)  # 访问目标网页
-    time.sleep(5)  # 等待 JavaScript 加载完成
+    time.sleep(1.5)  # 等待 JavaScript 加载完成
     html = driver.page_source  # 获取网页源代码
     driver.quit()  # 关闭浏览器
 
     # 解析 HTML
     soup = BeautifulSoup(html, 'html.parser')
+    article_tags = soup.find_all('article', class_='project-card base-card padding-bg')
+
+    href, name, result = '', '', []
+    for a in article_tags:
+        a_tag = a.find('a', href=True)  # 获取 a 标签
+        if a_tag:
+            href = a_tag['href']  # 获取 href 属性
+            name = a_tag['title']
+        result.append((name, href))
+
+    return result
 
 
-print(get_cfm('fabirc'))
+print(get_mrm('fabric'))
