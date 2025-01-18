@@ -22,8 +22,9 @@ def get_cfm(mod_name, pages=1):
     time.sleep(5)  # 等待 JavaScript 加载完成
     html = driver.page_source  # 获取网页源代码
     driver.quit()  # 关闭浏览器
-    soup = BeautifulSoup(html, 'html.parser')  # 使用 BeautifulSoup 解析 HTML
 
+    # 解析 HTML
+    soup = BeautifulSoup(html, 'html.parser')
     div_tags = soup.find_all('div', class_='project-card')  # 查找所有符合条件的 div 标签
     results = []
     for div in div_tags:
@@ -39,7 +40,19 @@ def get_cfm(mod_name, pages=1):
             version = version.text.strip()
             results.append((span_text, href, loader, version))
 
-    return results[0]
+    return results
+
+
+def get_mrm(mod_name, pages=1):
+    url = f'https://modrinth.com/mods?q={mod_name}&page={pages}'
+    driver = webdriver.Chrome()  # 启动 Chrome 浏览器
+    driver.get(url)  # 访问目标网页
+    time.sleep(5)  # 等待 JavaScript 加载完成
+    html = driver.page_source  # 获取网页源代码
+    driver.quit()  # 关闭浏览器
+
+    # 解析 HTML
+    soup = BeautifulSoup(html, 'html.parser')
 
 
 print(get_cfm('fabirc'))

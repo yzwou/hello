@@ -1,7 +1,6 @@
-window.onload = async () => {
-    console.log('6');
+document.getElementById('search_button').addEventListener('click', async () => {
     try {
-        const inputMessage = 'forge';
+        const inputMessage = document.getElementById('search_cfm').value;
         const response = await fetch('https://8.136.126.91:5000/api/endpoint', {
             method: 'POST',
             headers: {
@@ -25,4 +24,4 @@ window.onload = async () => {
     } catch (error) {
         console.log('请求失败: ' + error.message);
     }
-};
+});
