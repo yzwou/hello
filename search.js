@@ -1,37 +1,102 @@
-document.getElementById('search_button').addEventListener('click', async () => {
-    console.log('别按了', document.getElementById('search_cfm').value)
-    try {
-        const inputMessage = document.getElementById('search_cfm').value;
-        const response = await fetch('https://8.136.126.91:5000/api/endpoint', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({ data: inputMessage })  // 发送数据
-        });
-        const result = await response.json(); // 解析响应
-        console.log('服务器返回: ', result.message);
+document.addEventListener('DOMContentLoaded', () => {
+    const searchInput = document.getElementById('search_cfm');
+    const searchButton = document.getElementById('search_button');
+    const resultContainer = document.getElementById('result_cfm');
 
-        // 遍历返回的所有元素，并创建多个链接
-        let resultContainer = document.getElementById('result_cfm');
-        result.message[0].forEach(item => {
-            const link = document.createElement('a'); // 创建一个新的 <a> 标签
-            link.href = "https://www.curseforge.com" + item[1]; // 设置 href 为服务器返回的地址
-            link.innerHTML = item[0]; // 设置链接文本为返回的第一个值
-            link.target = '_blank'; // 设置点击后在新窗口打开链接
-            resultContainer.appendChild(link); // 将新链接添加到容器中
-            resultContainer.appendChild(document.createElement('br')); // 添加换行符
-        });
-        resultContainer = document.getElementById('result_mrm');
-        result.message[1].forEach(item => {
-            const link = document.createElement('a'); // 创建一个新的 <a> 标签
-            link.href = "https://modrinth.com/" + item[1]; // 设置 href 为服务器返回的地址
-            link.innerHTML = item[0]; // 设置链接文本为返回的第一个值
-            link.target = '_blank'; // 设置点击后在新窗口打开链接
-            resultContainer.appendChild(link); // 将新链接添加到容器中
-            resultContainer.appendChild(document.createElement('br')); // 添加换行符
-        });
-    } catch (error) {
-        console.log('请求失败: ' + error.message);
+    searchButton.addEventListener('click', () => {
+        const query = searchInput.value.trim();
+        if (!query) {
+            resultContainer.innerHTML = '<p>请输入关键词进行搜索</p>';
+            return;
+        }
+
+        resultContainer.innerHTML = '<p>正在搜索中，请稍候...</p>';
+
+        // 调用 CurseForge 和 Modrinth API 进行搜索
+        Promise.all([
+            searchCurseForge(query),
+            searchModrinth(query)
+        ])
+            .then(([curseForgeData, modrinthData]) => {
+                // 合并结果
+                const results = [...curseForgeData, ...modrinthData];
+
+                if (results.length === 0) {
+                    resultContainer.innerHTML = '<p>没有找到相关模组</p>';
+                    return;
+                }
+
+                resultContainer.innerHTML = '';  // 清空结果容器
+                results.forEach(mod => {
+                    const modElement = document.createElement('div');
+                    modElement.classList.add('mod-result');
+
+                    // 拼接模组信息
+                    modElement.innerHTML = `
+                    <h3><a href="${mod.url}" target="_blank">${mod.name}</a></h3>
+                    <p><strong>平台：</strong>${mod.platform}</p>
+                    <p>${mod.summary || '暂无简介'}</p>
+                    <img src="${mod.logoUrl || '默认图片URL'}" alt="${mod.name} logo" style="width: 100px; height: 100px;">
+                    <p><strong>下载次数：</strong>${mod.downloadCount}</p>
+                    <p><a href="${mod.websiteUrl}" target="_blank">更多信息</a></p>
+                `;
+
+                    resultContainer.appendChild(modElement);
+                });
+            })
+            .catch(error => {
+                console.error('搜索失败:', error);
+                resultContainer.innerHTML = '<p>搜索出错，请稍后再试</p>';
+            });
+    });
+
+    // 调用 CurseForge API 进行搜索
+    function searchCurseForge(query) {
+        return fetch(`https://api.curseforge.com/v1/mods/search?gameId=432&searchFilter=${encodeURIComponent(query)}`, {
+            headers: {
+                "x-api-key": "$2a$10$6QnlrKOnAwqIbxdGMUe3A.hPjswDK9Ob1pn3TI/E6xu.4rKe5ojMy" // 确保 API Key 中没有特殊字符
+            }
+        })
+            .then(res => res.json())
+            .then(data => {
+                return data.data.map(mod => ({
+                    name: mod.name,
+                    url: `https://www.curseforge.com/minecraft/mods/${mod.slug}`,
+                    platform: 'CurseForge',
+                    summary: mod.summary,
+                    logoUrl: mod.logoUrl,
+                    downloadCount: mod.downloadCount,
+                    websiteUrl: mod.websiteUrl || '#'
+                }));
+            })
+            .catch(error => {
+                console.error('CurseForge 搜索失败:', error);
+                return [];  // 如果 CurseForge 请求失败，返回空数组
+            });
+    }
+
+    // 调用 Modrinth API 进行搜索
+    function searchModrinth(query) {
+        return fetch(`https://api.modrinth.com/v2/search?query=${encodeURIComponent(query)}`, {
+            headers: {
+                "Content-Type": "application/json"
+            }
+        })
+            .then(res => res.json())
+            .then(data => {
+                return data.hits.map(mod => ({
+                    name: mod.title,
+                    url: `https://modrinth.com/mod/${mod.slug}`,
+                    platform: 'Modrinth',
+                    summary: mod.excerpt,
+                    logoUrl: mod.icon_url,
+                    downloadCount: mod.downloads,
+                    websiteUrl: mod.website_url || '#'
+                }));
+            })
+            .catch(error => {
+                console.error('Modrinth 搜索失败:', error);
+                return [];  // 如果 Modrinth 请求失败，返回空数组
+            });
     }
 });
