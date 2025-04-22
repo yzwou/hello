@@ -25,7 +25,6 @@ document.addEventListener('DOMContentLoaded', () => {
                     resultContainer.innerHTML = '<p>没有找到相关模组</p>';
                     return;
                 }
-
                 resultContainer.innerHTML = '';  // 清空结果容器
                 results.forEach(mod => {
                     const modElement = document.createElement('div');
@@ -38,7 +37,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     <p>${mod.summary || '暂无简介'}</p>
                     <img src="${mod.logoUrl || '默认图片URL'}" alt="${mod.name} logo" style="width: 100px; height: 100px;">
                     <p><strong>下载次数：</strong>${mod.downloadCount}</p>
-                    <p><a href="${mod.websiteUrl}" target="_blank">更多信息</a></p>
+                    <p><a href="${mod.websiteUrl || mod.url}" target="_blank">更多信息</a></p>
                 `;
 
                     resultContainer.appendChild(modElement);
@@ -61,12 +60,12 @@ document.addEventListener('DOMContentLoaded', () => {
             .then(data => {
                 return data.data.map(mod => ({
                     name: mod.name,
-                    url: `https://www.curseforge.com/minecraft/mods/${mod.slug}`,
+                    url: mod.links?.websiteUrl || `https://www.curseforge.com/minecraft/mods/${mod.slug}`,
                     platform: 'CurseForge',
                     summary: mod.summary,
-                    logoUrl: mod.logoUrl,
+                    logoUrl: mod.logo?.thumbnailUrl,
                     downloadCount: mod.downloadCount,
-                    websiteUrl: mod.websiteUrl || '#'
+                    websiteUrl: mod.links?.websiteUrl || `https://www.curseforge.com/minecraft/mods/${mod.slug}`
                 }));
             })
             .catch(error => {

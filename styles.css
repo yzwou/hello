@@ -205,6 +205,8 @@ p {
     padding: 30px 40px;
     border-radius: 12px;
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+    max-height: 600px;
+    overflow-y: auto;
 }
 
 #result_cfm {
@@ -216,10 +218,12 @@ p {
 }
 
 .mod-result {
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
     margin-bottom: 20px;
     padding: 10px;
     background-color: #fff;
     border: 1px solid #ddd;
     border-radius: 5px;
 }
+
 
