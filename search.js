@@ -37,13 +37,24 @@ document.addEventListener('DOMContentLoaded', () => {
                     const modElement = document.createElement('div');
                     modElement.classList.add('mod-result');
 
+                    // modElement.innerHTML = `
+                    //     <h3><a href="${mod.url}" target="_blank">${mod.name}</a></h3>
+                    //     <p><strong>平台：</strong>${mod.platform}</p>
+                    //     <p>${mod.summary || '暂无简介'}</p>
+                    //     <img src="${mod.logoUrl || '默认图片URL'}" alt="${mod.name} logo" style="width: 100px; height: 100px;">
+                    //     <p><strong>下载次数：</strong>${mod.downloadCount}</p>
+                    // `;
                     modElement.innerHTML = `
+                      <img src="${mod.logoUrl || '默认图片URL'}" alt="${mod.name} logo">
+                      <div class="mod-content">
                         <h3><a href="${mod.url}" target="_blank">${mod.name}</a></h3>
-                        <p><strong>平台：</strong>${mod.platform}</p>
-                        <p>${mod.summary || '暂无简介'}</p>
-                        <img src="${mod.logoUrl || '默认图片URL'}" alt="${mod.name} logo" style="width: 100px; height: 100px;">
-                        <p><strong>下载次数：</strong>${mod.downloadCount}</p>
+                        <div class="mod-summary">${mod.summary || '暂无简介'}</div>
+                        <div class="mod-meta">
+                          平台：${mod.platform} | 下载次数：${mod.downloadCount}
+                        </div>
+                      </div>
                     `;
+
 
                     resultContainer.appendChild(modElement);
                 });
