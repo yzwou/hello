@@ -50,10 +50,50 @@
 <div style="position: relative;top: 50px;left: 15%;">
 	<h1 class="title-smarter" style="bottom: 10cap">快速搜索Mod（开发中）</h1>
 </div>
+
 <form id="search_box-cfm">
-	<label for="search_cfm"></label><input id="search_cfm" maxlength="500" name="message">
-	<div><button type="button" class="other-button" id="search_button" >提交</button></div>
+	<h2 style="margin-bottom: 10px;">快速搜索 Mod</h2>
+
+	<!-- 搜索框 -->
+	<label for="search_cfm">关键词：</label>
+	<input id="search_cfm" maxlength="500" name="message" placeholder="输入模组名称或关键字">
+	<br><br>
+
+	<!-- 版本 -->
+	<div class="form-row">
+		<label for="version">版本：</label>
+		<select id="version">
+			<option value="">不限</option>
+			<option value="1.21">1.21</option>
+			<option value="1.20.1">1.20.1</option>
+		</select>
+	</div>
+
+	<!-- 加载器 -->
+	<div class="form-row">
+		<label for="loader">加载器：</label>
+		<select id="loader">
+			<option value="">不限</option>
+			<option value="fabric">Fabric</option>
+			<option value="forge">Forge</option>
+		</select>
+	</div>
+
+	<!-- 下载源 -->
+	<div class="form-row">
+		<label for="source">下载源：</label>
+		<select id="source">
+			<option value="all">全部</option>
+			<option value="curseforge">CurseForge</option>
+			<option value="modrinth">Modrinth</option>
+		</select>
+	</div>
+	<div>
+		<button type="button" class="other-button" id="search_button">提交</button>
+	</div>
 </form>
+
+
 <div id="sr_background">
 	<a id="s_result" class="sr"></a>
 	<div id="result_cfm"></div>

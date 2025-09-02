@@ -153,7 +153,7 @@ p {
 }
 .other-button {
     position: relative;
-    top: 5cap;
+    top: 1cap;
     color: #ffffff;
     background: rgba(150, 255, 171, 0.2);
     width: 120px;
@@ -168,7 +168,6 @@ p {
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 #suggests button {left:50%;}
-#search_box-cfm button {left: 20%}
 
 #weather-result{
     position: relative;
@@ -179,17 +178,6 @@ p {
     position: relative;
     top: 8cap;
     left: 50%;
-}
-
-#search_cfm{
-    position: relative;
-    right: 15%;
-    width: 82%;
-    height: 50px;
-    border-radius: 5px;
-    font-size: 20px;
-    border-color: #009bff;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 
 .sr{
@@ -226,4 +214,109 @@ p {
     border-radius: 5px;
 }
 
+/* 搜索表单整体 */
+#search_box-cfm {
+    position: relative;
+    top: 8cap;
+    left: 25%;
+    width: 100%;
+    background: rgba(255, 255, 255, 0.12);
+    padding: 25px 30px;
+    border-radius: 12px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.25);
+    text-align: center;
+}
+
+/* 搜索表单标题 */
+#search_box-cfm h2 {
+    font-size: 1.8rem;
+    margin-bottom: 20px;
+    color: #fff;
+    text-shadow: 1px 1px 3px rgba(0,0,0,0.4);
+}
+
+/* 输入框 */
+#search_cfm {
+    width: 90%;
+    height: 60px;
+    border-radius: 8px;
+    font-size: 18px;
+    border: 1px solid rgba(255,255,255,0.4);
+    background: rgba(255, 255, 255, 0.2);
+    color: #fff;
+    padding: 0 12px;
+    margin-bottom: 20px;
+}
+#search_cfm::placeholder {
+    color: rgba(255,255,255,0.6);
+}
+
+/* 下拉框容器 */
+#search_box-cfm label {
+    display: inline-block;
+    margin: 8px 10px 5px 0;
+    font-size: 16px;
+    color: #fff;
+}
+
+#search_box-cfm select {
+    padding: 8px 12px;
+    margin: 5px 10px;
+    font-size: 16px;
+    border-radius: 8px;
+    border: 1px solid rgba(255,255,255,0.4);
+    background: rgba(255, 255, 255, 0.2);
+    color: #fff;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+#search_box-cfm select:hover {
+    background: rgba(255,255,255,0.3);
+}
+
+/* 搜索按钮 */
+#search_box-cfm button {
+    margin-top: 20px;
+    padding: 12px 30px;
+    font-size: 18px;
+    color: #fff;
+    background: rgba(150, 255, 171, 0.25);
+    border: 2px solid rgba(255, 255, 255, 0.4);
+    border-radius: 10px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+#search_box-cfm button:hover {
+    background: rgba(150, 255, 171, 0.4);
+    border-color: #fff;
+    box-shadow: 0 4px 12px rgba(255, 255, 255, 0.4);
+}
+
+/* 修复 select 下拉选项颜色 */
+#search_box-cfm select option {
+    background: #2d2d2d;   /* 深色背景 */
+    color: #fff;           /* 白色文字 */
+}
+
+/* 搜索表单的每一行布局：label + select 对齐 */
+#search_box-cfm .form-row {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 10px 0;
+    gap: 10px; /* label 和 select 间距 */
+}
+
+#search_box-cfm label {
+    margin: 0;
+    font-size: 16px;
+    min-width: 60px;  /* 保证宽度一致 */
+    text-align: right;
+}
+
+#search_box-cfm select {
+    flex: 1; /* 自动撑开 */
+    max-width: 200px;
+}
 
