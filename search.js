@@ -5,23 +5,19 @@ document.addEventListener('DOMContentLoaded', () => {
 
     searchButton.addEventListener('click', () => {
         const query = searchInput.value.trim();
+        const category = document.getElementById('category')?.value || "mod";
         const version = document.getElementById('version')?.value || "";
         const loader = document.getElementById('loader')?.value || "";
         const source = document.getElementById('source')?.value || "all";
-
-        if (!query) {
-            resultContainer.innerHTML = '<p>请输入关键词进行搜索</p>';
-            return;
-        }
 
         resultContainer.innerHTML = '<p>正在搜索中，请稍候...</p>';
 
         let searches = [];
         if (source === 'curseforge' || source === 'all') {
-            searches.push(searchCurseForge(query, version, loader));
+            searches.push(searchCurseForge(query, category, version, loader));
         }
         if (source === 'modrinth' || source === 'all') {
-            searches.push(searchModrinth(query, version, loader));
+            searches.push(searchModrinth(query, category, version, loader));
         }
 
         Promise.all(searches)
@@ -29,34 +25,24 @@ document.addEventListener('DOMContentLoaded', () => {
                 const results = resultsArr.flat();
 
                 if (results.length === 0) {
-                    resultContainer.innerHTML = '<p>没有找到相关模组</p>';
+                    resultContainer.innerHTML = '<p>没有找到相关内容</p>';
                     return;
                 }
                 resultContainer.innerHTML = '';  // 清空结果容器
-                results.forEach(mod => {
-                    const modElement = document.createElement('div');
-                    modElement.classList.add('mod-result');
-
-                    // modElement.innerHTML = `
-                    //     <h3><a href="${mod.url}" target="_blank">${mod.name}</a></h3>
-                    //     <p><strong>平台：</strong>${mod.platform}</p>
-                    //     <p>${mod.summary || '暂无简介'}</p>
-                    //     <img src="${mod.logoUrl || '默认图片URL'}" alt="${mod.name} logo" style="width: 100px; height: 100px;">
-                    //     <p><strong>下载次数：</strong>${mod.downloadCount}</p>
-                    // `;
-                    modElement.innerHTML = `
-                      <img src="${mod.logoUrl || '默认图片URL'}" alt="${mod.name} logo">
+                results.forEach(item => {
+                    const element = document.createElement('div');
+                    element.classList.add('mod-result');
+                    element.innerHTML = `
+                      <img src="${item.logoUrl || '默认图片URL'}" alt="${item.name} logo">
                       <div class="mod-content">
-                        <h3><a href="${mod.url}" target="_blank">${mod.name}</a></h3>
-                        <div class="mod-summary">${mod.summary || '暂无简介'}</div>
+                        <h3><a href="${item.url}" target="_blank">${item.name}</a></h3>
+                        <div class="mod-summary">${item.summary || '暂无简介'}</div>
                         <div class="mod-meta">
-                          平台：${mod.platform} | 下载次数：${mod.downloadCount}
+                          平台：${item.platform} | 下载次数：${item.downloadCount}
                         </div>
                       </div>
                     `;
-
-
-                    resultContainer.appendChild(modElement);
+                    resultContainer.appendChild(element);
                 });
             })
             .catch(error => {
@@ -66,29 +52,37 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     // CurseForge 搜索
-    function searchCurseForge(query, version, loader) {
-        const loaderMap = { forge: 1, fabric: 4, quilt: 5, neoforge: 6 };
+    function searchCurseForge(query, category, version, loader) {
+        const loaderMap = {forge: 1, fabric: 4, quilt: 5, neoforge: 6};
+        const categoryMap = {mod: 6, resourcepack: 12, shader: 6552};
+
         const params = new URLSearchParams({
             gameId: 432, // Minecraft
             searchFilter: query
         });
+
+        // 仅当选择了具体分类时才加 classId
+        if (category !== "all" && categoryMap[category]) {
+            params.append("classId", categoryMap[category]);
+        }
+
         if (version) params.append("gameVersion", version);
         if (loader && loaderMap[loader]) params.append("modLoaderType", loaderMap[loader]);
 
         return fetch(`https://api.curseforge.com/v1/mods/search?${params.toString()}`, {
             headers: {
-                "x-api-key": "$2a$10$6QnlrKOnAwqIbxdGMUe3A.hPjswDK9Ob1pn3TI/E6xu.4rKe5ojMy" // 记得替换成你的 CurseForge API Key
+                "x-api-key": "你的CF_API_KEY"
             }
         })
             .then(res => res.json())
             .then(data => {
-                return (data.data || []).map(mod => ({
-                    name: mod.name,
-                    url: mod.links?.websiteUrl || `https://www.curseforge.com/minecraft/mods/${mod.slug}`,
+                return (data.data || []).map(item => ({
+                    name: item.name,
+                    url: item.links?.websiteUrl || `https://www.curseforge.com/minecraft/${category}s/${item.slug}`,
                     platform: 'CurseForge',
-                    summary: mod.summary,
-                    logoUrl: mod.logo?.thumbnailUrl,
-                    downloadCount: mod.downloadCount
+                    summary: item.summary,
+                    logoUrl: item.logo?.thumbnailUrl,
+                    downloadCount: item.downloadCount
                 }));
             })
             .catch(error => {
@@ -97,9 +91,15 @@ document.addEventListener('DOMContentLoaded', () => {
             });
     }
 
-    // Modrinth 搜索
-    function searchModrinth(query, version, loader) {
+// Modrinth 搜索
+    function searchModrinth(query, category, version, loader) {
         let facets = [];
+
+        // 仅当选择了具体分类时才加 project_type
+        if (category !== "all") {
+            facets.push(`["project_type:${category}"]`);
+        }
+
         if (version) facets.push(`["versions:${version}"]`);
         if (loader) facets.push(`["categories:${loader}"]`);
 
@@ -107,17 +107,17 @@ document.addEventListener('DOMContentLoaded', () => {
             + (facets.length ? `&facets=[${facets.join(",")}]` : "");
 
         return fetch(url, {
-            headers: { "Content-Type": "application/json" }
+            headers: {"Content-Type": "application/json"}
         })
             .then(res => res.json())
             .then(data => {
-                return (data.hits || []).map(mod => ({
-                    name: mod.title,
-                    url: `https://modrinth.com/mod/${mod.slug}`,
+                return (data.hits || []).map(item => ({
+                    name: item.title,
+                    url: `https://modrinth.com/${item.project_type}/${item.slug}`,
                     platform: 'Modrinth',
-                    summary: mod.excerpt,
-                    logoUrl: mod.icon_url,
-                    downloadCount: mod.downloads
+                    summary: item.excerpt,
+                    logoUrl: item.icon_url,
+                    downloadCount: item.downloads
                 }));
             })
             .catch(error => {
@@ -125,4 +125,4 @@ document.addEventListener('DOMContentLoaded', () => {
                 return [];
             });
     }
-});
+})

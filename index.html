@@ -52,34 +52,35 @@
 </div>
 
 <form id="search_box-cfm">
-	<h2 style="margin-bottom: 10px;">快速搜索 Mod</h2>
-
-	<!-- 搜索框 -->
+	<h2 style="margin-bottom: 10px;">快速搜索</h2>
 	<label for="search_cfm">关键词：</label>
-	<input id="search_cfm" maxlength="500" name="message" placeholder="输入模组名称或关键字">
+	<input id="search_cfm" maxlength="500" name="message" placeholder="输入名称或关键字">
 	<br><br>
-
-	<!-- 版本 -->
+	<div class="form-row">
+		<label for="category">类型：</label>
+		<select id="category">
+			<option value="all">全部</option>
+			<option value="mod">模组 (Mods)</option>
+			<option value="shader">光影 (Shaders)</option>
+			<option value="resourcepack">资源包 (Resource Packs)</option>
+		</select>
+	</div>
 	<div class="form-row">
 		<label for="version">版本：</label>
 		<select id="version">
 			<option value="">不限</option>
-			<option value="1.21">1.21</option>
-			<option value="1.20.1">1.20.1</option>
 		</select>
 	</div>
-
-	<!-- 加载器 -->
 	<div class="form-row">
 		<label for="loader">加载器：</label>
 		<select id="loader">
 			<option value="">不限</option>
 			<option value="fabric">Fabric</option>
 			<option value="forge">Forge</option>
+			<option value="quilt">Quilt</option>
+			<option value="neoforge">NeoForge</option>
 		</select>
 	</div>
-
-	<!-- 下载源 -->
 	<div class="form-row">
 		<label for="source">下载源：</label>
 		<select id="source">
@@ -88,6 +89,7 @@
 			<option value="modrinth">Modrinth</option>
 		</select>
 	</div>
+
 	<div>
 		<button type="button" class="other-button" id="search_button">提交</button>
 	</div>
@@ -165,19 +167,29 @@
 		</div>
 	</div>
 
+	<br><br>
+	<h3>· IDEA启动器</h3>
+	<div>
+		<p>特点：</p>
+		<p>可以制作模组，调式方便</p>
+		<br>
+		<p>缺点：</p>
+		<p>其他都是缺点</p>
+		<br>
+		<p style="font-size: 10px; left: 20cap">你还真想用这个？</p>
+	</div>
 	<br><br><br><br>
-	<h3 style="position: relative; text-align: center">更多启动器更新中...来说点话？</h3>
 
 </div>
 
-<br>
-<form id="suggests">
-	<h1 class="title-smarter" style="left:5%">建议反馈</h1>
-	<label for="message"></label><input id="message" maxlength="500" name="message">
-	<div>
-		<button type="submit" class="other-button">提交</button>
-	</div>
-</form>
+<!--<br>-->
+<!--<form id="suggests">-->
+<!--	<h1 class="title-smarter" style="left:5%">建议反馈</h1>-->
+<!--	<label for="message"></label><input id="message" maxlength="500" name="message">-->
+<!--	<div>-->
+<!--		<button type="submit" class="other-button">提交</button>-->
+<!--	</div>-->
+<!--</form>-->
 
 
 <!-- 底部固定文字 -->
@@ -189,4 +201,5 @@
 <script src="script.js"></script>
 <script src="send.js"></script>
 <script src="search.js"></script>
+<script src="byme.js"></script>
 </html>
