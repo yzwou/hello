@@ -38,3 +38,31 @@ versions.forEach(v => {
 });
 
 select.innerHTML = optionsHtml;
+
+const btn = document.getElementById("toggle-theme");
+const body = document.body;
+
+
+// 点击按钮切换
+btn.addEventListener("click", () => {
+    body.classList.toggle("dark-mode");
+    // 保存到本地存储，刷新后依然记住
+    if (body.classList.contains("dark-mode")) {
+        localStorage.setItem("theme", "dark");
+        btn.innerText = "深色";
+        btn.background = "#000000";
+        btn.color = "#fff";
+    } else {
+        localStorage.setItem("theme", "light");
+        btn.innerText = "浅色";
+        btn.style.background = "#fff";
+        btn.style.color = "#000000";
+    }
+});
+
+// 页面加载时读取本地存储
+window.addEventListener("load", () => {
+    if (localStorage.getItem("theme") === "dark") {
+        body.classList.add("dark-mode");
+    }
+});

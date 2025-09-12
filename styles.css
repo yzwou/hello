@@ -371,75 +371,93 @@ p {
     color: #888;
 }
 
+#toggle-theme{
+    transition: 0.2s;
+    -webkit-transition: 0.2s;
+    position: absolute;
+    border-radius: 100%;
+    height: 50px;
+    width: 50px;
+    font-size: 15px;
+    background: #000000;
+    color: #fff;
+    border: none;
+    left: 10px;
+    top: 10px;
+    opacity:0.5;
+}
 
-
+#toggle-theme:hover {
+    opacity: 1;
+}
 
 /* 🌙 暗黑模式（深色 + 红紫渐变风格） */
-@media (prefers-color-scheme: dark) {
-    body {
-        background: linear-gradient(135deg, #2e385e, #103e3e, #6c3c59);
-        color: #ffffff;
-    }
-
-    .content, #sr_background, #search_box-cfm {
-        background: rgba(3, 67, 60, 0.8);
-        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.6);
-    }
-
-    h1, h2, h3 {
-        color: #fff;
-        text-shadow: 1px 1px 4px rgba(0,0,0,0.6);
-    }
-
-    p, .mod-summary, .mod-meta {
-        color: #ddd;
-    }
-
-    /* 按钮风格 */
-    .content button,
-    #search_box-cfm button,
-    .other-button {
-        background: rgba(50, 87, 180, 0.25);
-        border: 1px solid rgba(255, 255, 255, 0.3);
-        color: #f5f5f5;
-    }
-    .content button:hover,
-    #search_box-cfm button:hover,
-    .other-button:hover {
-        background: rgba(70, 107, 200, 0.35);
-        border-color: #fff;
-    }
-
-    /* 输入框 */
-    #search_cfm {
-        background: rgba(80, 50, 50, 0.25);
-        border: 1px solid rgba(255,255,255,0.3);
-        color: #fff;
-    }
-    #search_cfm::placeholder {
-        color: rgba(200, 213, 255, 0.6);
-    }
-
-    /* 下拉框 */
-    #search_box-cfm select {
-        background: rgba(40, 52, 100, 0.3);
-        border: 1px solid rgba(255,255,255,0.3);
-        color: #fff;
-    }
-    #search_box-cfm select option {
-        background: #1a1d3a;  /* 深红背景 */
-        color: #fff;
-    }
-
-    /* 模块结果卡片 */
-    .mod-result {
-        background: #1a1d2a;
-        border: 1px solid #222655;
-    }
-    .mod-content h3 a {
-        color: #778eff;
-    }
-    .mod-content h3 a:hover {
-        color: #99aaff;
-    }
+body.dark-mode {
+    background: linear-gradient(135deg, #2e385e, #103e3e, #6c3c59);
+    color: #ffffff;
 }
+
+body.dark-mode .content,
+body.dark-mode #sr_background,
+body.dark-mode #search_box-cfm {
+    background: rgba(3, 67, 60, 0.8);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.6);
+}
+
+body.dark-mode h1,
+body.dark-mode h2,
+body.dark-mode h3 {
+    color: #fff;
+    text-shadow: 1px 1px 4px rgba(0,0,0,0.6);
+}
+
+body.dark-mode p,
+body.dark-mode .mod-summary,
+body.dark-mode .mod-meta {
+    color: #ddd;
+}
+
+body.dark-mode .content button,
+body.dark-mode #search_box-cfm button,
+body.dark-mode .other-button {
+    background: rgba(50, 87, 180, 0.25);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    color: #f5f5f5;
+}
+body.dark-mode .content button:hover,
+body.dark-mode #search_box-cfm button:hover,
+body.dark-mode .other-button:hover {
+    background: rgba(70, 107, 200, 0.35);
+    border-color: #fff;
+}
+
+body.dark-mode #search_cfm {
+    background: rgba(80, 50, 50, 0.25);
+    border: 1px solid rgba(255,255,255,0.3);
+    color: #fff;
+}
+body.dark-mode #search_cfm::placeholder {
+    color: rgba(200, 213, 255, 0.6);
+}
+
+body.dark-mode #search_box-cfm select {
+    background: rgba(40, 52, 100, 0.3);
+    border: 1px solid rgba(255,255,255,0.3);
+    color: #fff;
+}
+body.dark-mode #search_box-cfm select option {
+    background: #1a1d3a;
+    color: #fff;
+}
+
+body.dark-mode .mod-result {
+    background: #1a1d2a;
+    border: 1px solid #222655;
+}
+body.dark-mode .mod-content h3 a {
+    color: #778eff;
+}
+body.dark-mode .mod-content h3 a:hover {
+    color: #99aaff;
+}
+
