@@ -3,10 +3,7 @@ function redirectTo(url) {
 }
 
 document.addEventListener('DOMContentLoaded', function() {
-    // 获取所有带有 class 'button' 的按钮
     const buttons = document.querySelectorAll('.button');
-
-    // 为每个按钮绑定事件
     buttons.forEach(button => {
         button.addEventListener('click', function() {
             const url = button.getAttribute('data-url');
