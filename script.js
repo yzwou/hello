@@ -11,12 +11,10 @@ document.addEventListener('DOMContentLoaded', function() {
         button.addEventListener('click', function() {
             const url = button.getAttribute('data-url');
             const message = button.getAttribute('data-message');
-
             // 弹出提示框
             if (message) {
                 window.alert(message);
             }
-
             // 如果有 URL，跳转到该地址
             if (url) {
                 window.location.href = url;
