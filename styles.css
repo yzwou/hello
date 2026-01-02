@@ -146,15 +146,15 @@ body.dark-mode #search_mcserver {
 body:not(.dark-mode) input,
 body:not(.dark-mode) select {
     background: rgba(255,255,255,0.65);
-    color: #222222;
     border: 1px solid rgba(0,0,0,0.2);
     border-radius: 8px;
     padding: 8px 12px;
 }
 
-body:not(.dark-mode) input::placeholder {
-    color: #666666;
-}
+body:not(.dark-mode) select {color: #5a5a5a;}
+body:not(.dark-mode) input {color: #232323;}
+
+body:not(.dark-mode) input::placeholder {color: #666666;}
 
 /* =========================================================
    输入框 / 下拉框 —— 深色模式
@@ -237,6 +237,21 @@ body.dark-mode #mcserver_background {
 }
 
 /* =========================================================
+   结果区域文字颜色修复
+   ========================================================= */
+body:not(.dark-mode) .sr_background,
+body:not(.dark-mode) #result_cfm,
+body:not(.dark-mode) #mcserver_background {
+    color: #222222;
+}
+
+body.dark-mode .sr_background,
+body.dark-mode #result_cfm,
+body.dark-mode #mcserver_background {
+    color: #eeeeee;
+}
+
+/* =========================================================
    滚动条
    ========================================================= */
 .sr_background::-webkit-scrollbar,
@@ -292,7 +307,7 @@ body.dark-mode .mod-result {
    启动器介绍
    ========================================================= */
 .starter {
-    margin-top: 80px;
+    margin-top: 18px;
 }
 
 .hmcl, .pcl, .official, .atl {
@@ -300,10 +315,11 @@ body.dark-mode .mod-result {
     gap: 30px;
     align-items: center;
     margin: 30px 0;
+    font-size: 20px;
 }
 
 .starter img {
-    width: 360px;
+    width: 60%;
     border-radius: 12px;
 }
 
