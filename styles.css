@@ -140,9 +140,7 @@ h1 {
     background: rgba(150,255,171,0.45);
 }
 
-/* =====================
-   结果区域（Mod / 服务器）
-===================== */
+/* 结果区域（Mod / 服务器） */
 .sr_background {
     margin: 40px auto;
     max-width: 900px;
@@ -150,6 +148,48 @@ h1 {
     border-radius: 14px;
     padding: 30px;
     box-shadow: 0 6px 24px rgba(0,0,0,0.25);
+    /* 新增以下样式 */
+    max-height: 600px; /* 最大高度，可根据需要调整 */
+    overflow-y: auto;  /* 垂直方向溢出时显示滚动条 */
+    overflow-x: hidden; /* 隐藏水平滚动条 */
+}
+
+
+/* ===== 快速搜索结果专用的滚动容器 ===== */
+#result_cfm {
+    max-height: 600px;              /* 最大高度，可根据需要调整 */
+    overflow-y: auto;               /* 垂直滚动 */
+    overflow-x: hidden;             /* 隐藏水平滚动条 */
+    padding: 20px;                  /* 内边距，让内容不贴边 */
+    background: rgba(255,255,255,0.12);
+    border-radius: 14px;
+    box-shadow: 0 6px 24px rgba(0,0,0,0.25);
+    margin: 30px auto;              /* 与搜索框保持距离，居中 */
+    max-width: 900px;
+}
+
+/* 美化滚动条（可选，但推荐保留，好看） */
+#result_cfm::-webkit-scrollbar {
+    width: 8px;
+}
+
+#result_cfm::-webkit-scrollbar-track {
+    background: rgba(255,255,255,0.1);
+    border-radius: 4px;
+}
+
+#result_cfm::-webkit-scrollbar-thumb {
+    background: rgba(255,255,255,0.3);
+    border-radius: 4px;
+}
+
+#result_cfm::-webkit-scrollbar-thumb:hover {
+    background: rgba(255,255,255,0.5);
+}
+
+/* 深色模式下保持一致 */
+body.dark-mode #result_cfm {
+    background: rgba(20,30,60,0.75);
 }
 
 /* 卡片结果 */

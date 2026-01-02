@@ -42,9 +42,18 @@ document.addEventListener("DOMContentLoaded", () => {
 
             const players = data.players || {};
             const version = data.version?.name || "未知";
+            const getMotd = (motdPart) => {
+                if (Array.isArray(motdPart)) {
+                    return motdPart.join("<br>");
+                } else if (typeof motdPart === "string") {
+                    return motdPart;
+                }
+                return "";
+            };
+
             const motd =
-                data.motd?.clean?.join("<br>") ||
-                data.motd?.raw?.join("<br>") ||
+                getMotd(data.motd?.clean) ||
+                getMotd(data.motd?.raw) ||
                 "无 MOTD";
 
             const icon = data.icon
