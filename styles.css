@@ -1,6 +1,30 @@
-/* =====================
+/* =========================================================
+   CSS 变量定义
+   ========================================================= */
+:root {
+    --bg-gradient-light: linear-gradient(135deg, #11da47, #6c95ff, #ff7272);
+    --bg-gradient-dark: linear-gradient(135deg, #2e385e, #103e3e, #6c3c59);
+
+    --content-bg-light: rgba(255,255,255,0.12);
+    --content-bg-dark: rgba(20,30,60,0.75);
+
+    --mod-result-bg-light: #ffffff;
+    --mod-result-bg-dark: #1a1d2a;
+
+    --text-color-light: #ffffff;
+    --text-color-dark: #eeeeee;
+
+    --shadow: 0 6px 24px rgba(0,0,0,0.25);
+
+    --scroll-width: 8px;
+    --scroll-track: rgba(255,255,255,0.1);
+    --scroll-thumb: rgba(255,255,255,0.3);
+    --scroll-thumb-hover: rgba(255,255,255,0.5);
+}
+
+/* =========================================================
    全局基础
-===================== */
+   ========================================================= */
 * {
     margin: 0;
     padding: 0;
@@ -9,12 +33,19 @@
 
 body {
     font-family: Arial, sans-serif;
-    background: linear-gradient(135deg, #11da47, #6c95ff, #ff7272);
-    color: #fff;
+    background: var(--bg-gradient-light);
+    color: var(--text-color-light);
     min-height: 100vh;
 }
 
-/* 页面统一居中容器 */
+body.dark-mode {
+    background: var(--bg-gradient-dark);
+    color: var(--text-color-dark);
+}
+
+/* =========================================================
+   页面结构
+   ========================================================= */
 .page {
     width: 100%;
     max-width: 1200px;
@@ -22,9 +53,9 @@ body {
     padding: 30px 20px 80px;
 }
 
-/* =====================
-   通用标题
-===================== */
+/* =========================================================
+   标题
+   ========================================================= */
 h1 {
     font-size: 2.4rem;
     text-align: center;
@@ -38,19 +69,25 @@ h1 {
     text-align: center;
 }
 
-/* =====================
-   首页内容卡片
-===================== */
+/* =========================================================
+   内容卡片
+   ========================================================= */
 .content {
-    background: rgba(255,255,255,0.12);
+    background: var(--content-bg-light);
     border-radius: 14px;
     padding: 30px 40px;
     margin-bottom: 50px;
-    box-shadow: 0 6px 24px rgba(0,0,0,0.25);
+    box-shadow: var(--shadow);
     text-align: center;
 }
 
-/* 按钮组 */
+body.dark-mode .content {
+    background: var(--content-bg-dark);
+}
+
+/* =========================================================
+   按钮
+   ========================================================= */
 .buttons {
     display: flex;
     flex-wrap: wrap;
@@ -64,49 +101,37 @@ h1 {
     border-radius: 8px;
     background: rgba(255,255,255,0.25);
     border: 1px solid rgba(255,255,255,0.4);
-    color: #fff;
+    color: #ffffff;
     cursor: pointer;
     transition: 0.3s;
 }
+
 .content button:hover {
     background: rgba(255,255,255,0.35);
 }
 
-/* =====================
-   表单（Mod 搜索 / 服务器查询）
-===================== */
+/* =========================================================
+   表单容器
+   ========================================================= */
 #search_box-cfm,
 #search_mcserver {
-    background: rgba(255,255,255,0.12);
+    background: var(--content-bg-light);
     border-radius: 14px;
     padding: 30px;
     margin: 40px auto;
-    box-shadow: 0 6px 24px rgba(0,0,0,0.25);
+    box-shadow: var(--shadow);
     max-width: 900px;
     text-align: center;
 }
 
-#search_box-cfm h2,
-#search_mcserver h2 {
-    font-size: 1.8rem;
-    margin-bottom: 20px;
+body.dark-mode #search_box-cfm,
+body.dark-mode #search_mcserver {
+    background: var(--content-bg-dark);
 }
 
-/* 输入框 */
-#search_cfm,
-#server_ip {
-    width: 90%;
-    max-width: 700px;
-    height: 56px;
-    border-radius: 10px;
-    border: 1px solid rgba(255,255,255,0.4);
-    background: rgba(255,255,255,0.2);
-    color: #fff;
-    font-size: 18px;
-    padding: 0 14px;
-}
-
-/* 表单行 */
+/* =========================================================
+   表单布局
+   ========================================================= */
 .form-row {
     display: flex;
     justify-content: center;
@@ -115,16 +140,63 @@ h1 {
     margin: 12px 0;
 }
 
-.form-row select,
-.form-row input {
-    padding: 8px 12px;
+/* =========================================================
+   输入框 / 下拉框 —— 浅色模式
+   ========================================================= */
+body:not(.dark-mode) input,
+body:not(.dark-mode) select {
+    background: rgba(255,255,255,0.65);
+    color: #222222;
+    border: 1px solid rgba(0,0,0,0.2);
     border-radius: 8px;
-    border: 1px solid rgba(255,255,255,0.4);
-    background: rgba(255,255,255,0.2);
-    color: #fff;
+    padding: 8px 12px;
 }
 
-/* 提交按钮 */
+body:not(.dark-mode) input::placeholder {
+    color: #666666;
+}
+
+/* =========================================================
+   输入框 / 下拉框 —— 深色模式
+   ========================================================= */
+body.dark-mode input,
+body.dark-mode select {
+    background: rgba(0,0,0,0.35);
+    color: #ffffff;
+    border: 1px solid rgba(255,255,255,0.3);
+    border-radius: 8px;
+    padding: 8px 12px;
+}
+
+body.dark-mode input::placeholder {
+    color: #aaaaaa;
+}
+
+/* =========================================================
+   下拉选项（关键修复）
+   ========================================================= */
+select option {
+    background: #ffffff;
+    color: #000000;
+}
+
+body.dark-mode select option {
+    background: #1a1d2a;
+    color: #ffffff;
+}
+
+/* =========================================================
+   输入框焦点态
+   ========================================================= */
+input:focus,
+select:focus {
+    outline: none;
+    box-shadow: 0 0 0 2px rgba(120,180,255,0.45);
+}
+
+/* =========================================================
+   提交按钮
+   ========================================================= */
 .other-button {
     margin-top: 20px;
     width: 140px;
@@ -133,103 +205,92 @@ h1 {
     font-size: 18px;
     background: rgba(150,255,171,0.3);
     border: none;
-    color: #fff;
+    color: #ffffff;
     cursor: pointer;
 }
+
 .other-button:hover {
     background: rgba(150,255,171,0.45);
 }
 
-/* 结果区域（Mod / 服务器） */
-.sr_background {
-    margin: 40px auto;
+/* =========================================================
+   结果区域
+   ========================================================= */
+.sr_background,
+#result_cfm,
+#mcserver_background {
+    margin: 30px auto;
     max-width: 900px;
-    background: rgba(255,255,255,0.12);
+    background: var(--content-bg-light);
     border-radius: 14px;
-    padding: 30px;
-    box-shadow: 0 6px 24px rgba(0,0,0,0.25);
-    /* 新增以下样式 */
-    max-height: 600px; /* 最大高度，可根据需要调整 */
-    overflow-y: auto;  /* 垂直方向溢出时显示滚动条 */
-    overflow-x: hidden; /* 隐藏水平滚动条 */
+    padding: 20px;
+    box-shadow: var(--shadow);
+    max-height: 600px;
+    overflow-y: auto;
+    overflow-x: hidden;
 }
 
-
-/* ===== 快速搜索结果专用的滚动容器 ===== */
-#result_cfm {
-    max-height: 600px;              /* 最大高度，可根据需要调整 */
-    overflow-y: auto;               /* 垂直滚动 */
-    overflow-x: hidden;             /* 隐藏水平滚动条 */
-    padding: 20px;                  /* 内边距，让内容不贴边 */
-    background: rgba(255,255,255,0.12);
-    border-radius: 14px;
-    box-shadow: 0 6px 24px rgba(0,0,0,0.25);
-    margin: 30px auto;              /* 与搜索框保持距离，居中 */
-    max-width: 900px;
+body.dark-mode .sr_background,
+body.dark-mode #result_cfm,
+body.dark-mode #mcserver_background {
+    background: var(--content-bg-dark);
 }
 
-/* 美化滚动条（可选，但推荐保留，好看） */
-#result_cfm::-webkit-scrollbar {
-    width: 8px;
+/* =========================================================
+   滚动条
+   ========================================================= */
+.sr_background::-webkit-scrollbar,
+#result_cfm::-webkit-scrollbar,
+#mcserver_background::-webkit-scrollbar {
+    width: var(--scroll-width);
 }
 
-#result_cfm::-webkit-scrollbar-track {
-    background: rgba(255,255,255,0.1);
+.sr_background::-webkit-scrollbar-track,
+#result_cfm::-webkit-scrollbar-track,
+#mcserver_background::-webkit-scrollbar-track {
+    background: var(--scroll-track);
     border-radius: 4px;
 }
 
-#result_cfm::-webkit-scrollbar-thumb {
-    background: rgba(255,255,255,0.3);
+.sr_background::-webkit-scrollbar-thumb,
+#result_cfm::-webkit-scrollbar-thumb,
+#mcserver_background::-webkit-scrollbar-thumb {
+    background: var(--scroll-thumb);
     border-radius: 4px;
 }
 
-#result_cfm::-webkit-scrollbar-thumb:hover {
-    background: rgba(255,255,255,0.5);
+.sr_background::-webkit-scrollbar-thumb:hover,
+#result_cfm::-webkit-scrollbar-thumb:hover,
+#mcserver_background::-webkit-scrollbar-thumb:hover {
+    background: var(--scroll-thumb-hover);
 }
 
-/* 深色模式下保持一致 */
-body.dark-mode #result_cfm {
-    background: rgba(20,30,60,0.75);
-}
-
-/* 卡片结果 */
+/* =========================================================
+   卡片结果
+   ========================================================= */
 .mod-result {
     display: flex;
     gap: 16px;
-    background: #fff;
+    background: var(--mod-result-bg-light);
     border-radius: 14px;
     padding: 16px;
     margin-bottom: 20px;
     box-shadow: 0 4px 14px rgba(0,0,0,0.12);
     transition: 0.2s;
 }
+
+body.dark-mode .mod-result {
+    background: var(--mod-result-bg-dark);
+    color: var(--text-color-dark);
+}
+
 .mod-result:hover {
     transform: translateY(-3px);
 }
 
-.mod-result img {
-    width: 80px;
-    height: 80px;
-    border-radius: 10px;
-    object-fit: cover;
-}
-
-.mod-content h3 {
-    font-size: 18px;
-    margin-bottom: 6px;
-}
-.mod-summary {
-    font-size: 14px;
-    color: #555;
-}
-.mod-meta {
-    font-size: 12px;
-    color: #888;
-}
-
-/* =====================
+/* =========================================================
    启动器介绍
-===================== */
+   ========================================================= */
 .starter {
     margin-top: 80px;
 }
@@ -246,30 +307,12 @@ body.dark-mode #result_cfm {
     border-radius: 12px;
 }
 
-/* =====================
+/* =========================================================
    底部
-===================== */
-.email, .talk {
+   ========================================================= */
+.email,
+.talk {
     text-align: center;
     margin-top: 20px;
     font-size: 16px;
-}
-
-/* =====================
-   深色模式
-===================== */
-body.dark-mode {
-    background: linear-gradient(135deg, #2e385e, #103e3e, #6c3c59);
-}
-
-body.dark-mode .content,
-body.dark-mode #search_box-cfm,
-body.dark-mode #search_mcserver,
-body.dark-mode .sr_background {
-    background: rgba(20,30,60,0.75);
-}
-
-body.dark-mode .mod-result {
-    background: #1a1d2a;
-    color: #eee;
 }
