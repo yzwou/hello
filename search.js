@@ -71,7 +71,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         return fetch(`https://api.curseforge.com/v1/mods/search?${params.toString()}`, {
             headers: {
-                "x-api-key": "你的CF_API_KEY"
+                "x-api-key": "$2a$10$6QnlrKOnAwqIbxdGMUe3A.hPjswDK9Ob1pn3TI/E6xu.4rKe5ojMy"
             }
         })
             .then(res => res.json())
