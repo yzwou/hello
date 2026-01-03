@@ -12,7 +12,7 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-@app.post("/api/test")
+@app.post("/")
 async def test_api(request: Request):
     data = await request.json()
     return {
