@@ -1,21 +1,15 @@
-# main.py
-from fastapi import FastAPI, Request
-from fastapi.middleware.cors import CORSMiddleware
+from fastapi import FastAPI
+from pydantic import BaseModel
 
 app = FastAPI()
 
-# 允许前端跨域访问（测试阶段用 *，正式换成你的前端域名）
-app.add_middleware(
-    CORSMiddleware,
-    allow_origins=["*"],
-    allow_methods=["*"],
-    allow_headers=["*"],
-)
+class Payload(BaseModel):
+    name: str
+    age: int
 
 @app.post("/")
-async def test_api(request: Request):
-    data = await request.json()
+async def test_api(data: Payload):
     return {
-        "from_frontend": data,
-        "hello": "hi"
+        "ok": True,
+        "data": data
     }
