@@ -2,33 +2,40 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Download</title>
 </head>
 <body>
 
-<button onclick="send()">Send</button>
+<button onclick="download()">Download</button>
+
 <script>
-    function send() {
-        fetch("http://183.66.27.22:20650", {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json"
-            },
-            body: JSON.stringify({
-                name: "Alice",
-                age: 18
-            })
-        })
-            .then(res => res.json())
-            .then(data => {
-                console.log("后端返回：", data)
-                alert(JSON.stringify(data, null, 2))
-            })
-            .catch(err => {
-                console.error(err)
-                alert("请求失败")
-            })
+    async function download() {
+        const objectKey = "test.zip"; // OSS 中的对象路径
+
+        try {
+            const resp = await fetch(
+                "https://oss-signed-url-hdvhergbei.cn-hangzhou.fcapp.run/oss-signed-url?key="
+                + encodeURIComponent(objectKey)
+            );
+
+            if (!resp.ok) {
+                throw new Error("Failed to get signed url");
+            }
+
+            const data = await resp.json();
+
+            if (!data.url) {
+                throw new Error("Invalid response");
+            }
+
+            // 触发下载
+            window.location.href = data.url;
+
+        } catch (err) {
+            alert("Download failed: " + err.message);
+        }
     }
 </script>
+
 </body>
 </html>
