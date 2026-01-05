@@ -14,27 +14,3 @@ const versions = [
 const select = document.getElementById('version');
 select.innerHTML = '<option value="">不限</option>' + versions.map(v => `<option value="${v}">${v}</option>`).join('');
 
-const btn = document.getElementById('toggle-theme');
-const body = document.body;
-
-// 加载时应用保存的主题
-if (localStorage.getItem('theme') === 'dark') {
-    body.classList.add('dark-mode');
-    btn.innerText = '切换到浅色';
-    btn.style.backgroundColor = '#000';
-    btn.style.color = '#fff';
-} else {
-    btn.innerText = '切换到深色';
-    btn.style.backgroundColor = '#fff';
-    btn.style.color = '#000';
-}
-
-// 点击切换主题
-btn.addEventListener('click', () => {
-    body.classList.toggle('dark-mode');
-    const isDark = body.classList.contains('dark-mode');
-    localStorage.setItem('theme', isDark ? 'dark' : 'light');
-    btn.innerText = isDark ? '切换到浅色' : '切换到深色';
-    btn.style.backgroundColor = isDark ? '#000' : '#fff';
-    btn.style.color = isDark ? '#fff' : '#000';
-});

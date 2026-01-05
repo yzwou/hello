@@ -9,9 +9,7 @@
 <button onclick="download()">Download</button>
 
 <script>
-    async function download() {
-        const objectKey = "test.zip"; // OSS 中的对象路径
-
+    async function download(objectKey="test.zip") {
         try {
             const resp = await fetch(
                 "https://oss-signed-url-hdvhergbei.cn-hangzhou.fcapp.run/oss-signed-url?key="
