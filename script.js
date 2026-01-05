@@ -1,11 +1,10 @@
 function redirectTo(url) {
-    // try {
-    //     window.open(url, '_blank');
-    // } catch {
-    //     window.location.href = url;
-    // }
-    console.log(`open ${url}`)
-    window.location.href = url;
+    try {
+        window.open(url, '_blank');
+    } catch {
+        window.location.href = url;
+    }
+    // window.location.href = url;
 }
 
 document.addEventListener('DOMContentLoaded', () => {
