@@ -4,6 +4,7 @@ function redirectTo(url) {
     // } catch {
     //     window.location.href = url;
     // }
+    console.log(`open ${url}`)
     window.location.href = url;
 }
 
