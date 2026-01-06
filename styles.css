@@ -40,10 +40,10 @@ body {
    页面结构
    ========================================================= */
 .page {
-    width: 100%;
-    max-width: 1200px;
+    width: 1200px;
     margin: 0 auto;
     padding: 30px 20px 80px;
+    max-width: 80%;
 }
 
 /* =========================================================
@@ -65,6 +65,7 @@ h1 {
     margin-bottom: 50px;
     box-shadow: var(--shadow);
     text-align: center;
+
 }
 
 /* =========================================================
@@ -99,7 +100,8 @@ h1 {
     padding: 30px;
     margin: 40px auto;
     box-shadow: var(--shadow);
-    max-width: 900px;
+    width: 80%;
+    max-width: 1200px;
     text-align: center;
 }
 

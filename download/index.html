@@ -5,20 +5,38 @@
     <title>MC启动器下载</title>
     <link rel="stylesheet" href="styles.css">
 </head>
-<body>
-<div class="page">
-<div class="starter">
-    <h2>启动器下载</h2>
+<body class="page">
+    <h2>启动器下载（观点仅供参考）</h2>
     <br><br>
+
     <h3>· HMCL启动器</h3>
-    <div class="hmcl">
+    <div class="starters">
         <img src="img/hmcl.png" alt="hmcl启动器图片">
         <div>
             <p>特点：</p>
-            <p>1.用的是国内源且下载源多，pcl下不了的hmcl可以下</p>
-            <p>2.可以直接导出整合包</p>
-            <p>3.有Mac与Linux版本</p>
-            <p>4.不知道了</p><br>
+            <p>1.老牌启动器，用的是国内源且下载源多</p>
+            <p>2.功能相对丰富</p>
+            <p>3.有macOS与Linux版本（PCL不具有的，除了官启外支持跨平台的启动器之一）</p>
+            <br>
+            <div class="button">
+                <button onclick="download('HMCL-3.9.1.exe')">直接下载</button>
+                <button data-url='https://hmcl.huangyuhui.net/download/'>官方下载</button>
+            </div>
+        </div>
+    </div>
+
+    <br><br>
+    <h3>· PCL2启动器</h3>
+    <div class="starters">
+        <img src="img/pcl.png" alt="pcl启动器图片">
+        <div>
+            <p>特点：</p>
+            <p>1.一个知名的启动器，有国内源可以使用</p>
+            <p>2.百宝箱中可以进行内存优化、清理垃圾，特别是那个【千万别点】</p>
+            <p>3.自带多线程下载器</p>
+            <p>4.帮助界面很有帮助，教程详细</p>
+            <p>5.动画好看（个人认为）</p>
+            <br>
             <div class="button">
                 <button onclick="download('Plain Craft Launcher 2.exe')">直接下载</button>
                 <button data-url='https://afdian.com/p/0164034c016c11ebafcb52540025c377'>官方下载</button>
@@ -27,22 +45,25 @@
     </div>
 
     <br><br>
-    <h3>· PCL2启动器</h3>
-    <div class="pcl">
-        <img src="img/pcl.png" alt="pcl启动器图片">
+    <h3>· PCL CE启动器</h3>
+    <div class="starters">
+        <img src="img/pclce.jpg" alt="pcl ce启动器图片">
         <div>
             <p>特点：</p>
-            <p>1.有用国内源，但hmcl的更稳定</p>
-            <p>2.百宝箱中可以进行内存优化、清理垃圾，特别是那个千万别点</p>
-            <p>3.自带多线程下载器</p>
-            <p>4.帮助界面很有帮助，教程很详细</p>
-            <p>5.不知道了</p>
+            <p>1.基于PCL2，理论上PCL2的优点基本上都有</p>
+            <p>2.功能比PCL2更加丰富，免费内置联机功能</p>
+            <p>3.个人认为最好用的启动器（之一）</p>
+            <br>
+            <div class="button">
+                <button onclick="download('Plain Craft Launcher 2.exe')">直接下载</button>
+                <button data-url='https://afdian.com/p/0164034c016c11ebafcb52540025c377'>官方下载</button>
+            </div>
         </div>
     </div>
 
     <br><br>
     <h3>· 官方启动器</h3>
-    <div class="official">
+    <div class="starters">
         <img src="img/official.png" alt="官方启动器图片">
         <div>
             <p>特点：</p>
@@ -52,41 +73,78 @@
             <p>缺点：</p>
             <p>安装模组、整合包等东西不方便，且使用的不是国内源</p>
             <p>不建议作为Java版启动器使用</p>
+            <br>
+            <div class="button">
+                <button onclick="download('MinecraftInstaller.exe')">直接下载</button>
+                <button data-url='https://afdian.com/p/0164034c016c11ebafcb52540025c377'>官方下载</button>
+            </div>
         </div>
     </div>
 
     <br><br>
     <h3>· ATLauncher</h3>
-    <div class="atl">
+    <div class="starters">
         <img src="img/atl.png" alt="ATLauncher启动器图片">
         <div>
             <p>特点：</p>
-            <p>1.相比PCL2和hmcl看起来更正规一些（不知道正规来形容恰不恰当）</p>
+            <p>1.不知道</p>
             <p>2.功能更丰富，但不一定用得上</p>
-            <p>3.可以导出整合包，个人认为比hmcl的导出功能好一些</p>
+            <p>3.可以导出整合包，个人认为比hmcl和pcl的导出功能好一些</p>
             <p>4.个人认为启动Servers版更加方便，但不一定用得上</p>
             <br>
             <p>缺点：</p>
             <p>使用的不是国内源而是国外源，安装版本时可能较慢或失败</p>
             <p>需要手动汉化</p>
+            <br>
+            <div class="button">
+                <button onclick="download('ATLauncher-setup-1.3.0.0.exe')">直接下载</button>
+                <button data-url='https://atlauncher.com/downloads'>官方下载</button>
+            </div>
         </div>
     </div>
 
     <br><br>
     <h3>· IDEA启动器</h3>
-    <div>
+    <div class="starters">
         <p>特点：</p>
         <p>可以制作模组，调式方便</p>
         <br>
         <p>缺点：</p>
         <p>其他都是缺点</p>
         <br>
-        <p style="font-size: 10px; left: 20cap">你还真想用这个？</p>
     </div>
-    <br><br><br><br>
+    <p style="font-size: 15px; left: 20cap">你还真想用这个？</p>
+    <br>
+    <div class="button">
+        <button data-url='https://www.jetbrains.com/idea/download'>官方下载</button>
+    </div>
 
-</div>
-</div>
+    <br><br><br>
+    <h2>其他还没写介绍的启动器</h2>
+    <br><br><br>
+
+    <h3>· X Minecraft Launcher</h3>
+    <div class="starters">
+        <div class="button">
+            <button data-url='https://xmcl.app/zh/'>官方下载</button>
+        </div>
+    </div>
+
+    <h3>· CurseForge APP </h3>
+    <div class="starters">
+        <div class="button">
+            <button data-url='https://www.curseforge.com/download/app'>官方下载CurseForge APP</button>
+        </div>
+    </div>
+
+    <h3>· Modrinth App</h3>
+    <div class="starters">
+        <div class="button">
+            <button data-url="https://modrinth.com/app">官方下载Modrinth App</button>
+        </div>
+    </div>
+
+    <br><br><br><br>
 </body>
 <script src="../script.js"></script>
 <script src="download.js"></script>
