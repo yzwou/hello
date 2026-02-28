@@ -1,10 +1,17 @@
 function redirectTo(url) {
-    // try {
-    //     window.open(url, '_blank');
-    // } catch {
-    //     window.location.href = url;
-    // }
-    window.location.href = url;
+    if (!url || typeof url !== 'string') {
+        return false;
+    }
+    const trimmedUrl = url.trim();
+    if (!trimmedUrl) {
+        return false;
+    }
+    try {
+        window.open(trimmedUrl, '_blank');
+    } catch (error) {
+        window.location.href = trimmedUrl;
+    }
+    return true;
 }
 
 document.addEventListener('DOMContentLoaded', () => {
