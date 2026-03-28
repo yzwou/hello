@@ -436,3 +436,224 @@ select:focus {
     box-shadow: 0 10px 40px rgba(0,0,0,0.35);
     filter: brightness(1.08);
 }
+
+/* =========================================================
+   移动端响应式优化
+   ========================================================= */
+
+/* 平板和移动端（最大宽度 1024px） */
+@media (max-width: 1024px) {
+    .page {
+        max-width: 95%;
+        padding: 20px 15px 60px;
+    }
+
+    .title-main {
+        font-size: 2.2rem;
+    }
+
+    .title-subtitle {
+        font-size: 1rem;
+    }
+
+    .content {
+        padding: 20px 25px;
+    }
+
+    #search_box-cfm,
+    #search_mcserver {
+        width: 90%;
+        padding: 20px;
+    }
+}
+
+/* 移动端（最大宽度 768px） */
+@media (max-width: 768px) {
+    .page {
+        max-width: 95%;
+        padding: 15px 10px 40px;
+    }
+
+    .main-title {
+        margin-bottom: 25px;
+        padding: 20px 15px;
+    }
+
+    .title-main {
+        font-size: 1.8rem;
+        letter-spacing: 1px;
+    }
+
+    .title-subtitle {
+        font-size: 0.9rem;
+    }
+
+    /* 卡片内边距减小 */
+    .content {
+        padding: 15px 20px;
+        margin-bottom: 30px;
+        border-radius: 12px;
+    }
+
+    /* 按钮全宽排列，字体适中 */
+    .content button {
+        width: 100%;
+        max-width: 280px;
+        padding: 12px 20px;
+        font-size: 0.95rem;
+    }
+
+    .buttons {
+        gap: 10px;
+    }
+
+    /* 表单优化 */
+    #search_box-cfm,
+    #search_mcserver {
+        width: 95%;
+        padding: 20px 15px;
+        margin: 25px auto;
+    }
+
+    .form-row {
+        flex-direction: column;
+        gap: 8px;
+    }
+
+    .form-row label {
+        margin-bottom: 4px;
+    }
+
+    .form-row input,
+    .form-row select {
+        width: 100%;
+        max-width: 100%;
+    }
+
+    #server_ip,
+    #search_cfm {
+        width: 100% !important;
+    }
+
+    #server_port {
+        width: 100% !important;
+    }
+
+    /* 提交按钮 */
+    .other-button {
+        width: 100%;
+        max-width: 200px;
+        height: 48px;
+        font-size: 16px;
+    }
+
+    /* 结果区域 */
+    .sr_background,
+    #result_cfm,
+    #mcserver_background {
+        width: 95%;
+        padding: 15px;
+        max-height: 500px;
+    }
+
+    /* 卡片结果项 */
+    .mod-result {
+        flex-direction: column;
+        padding: 12px;
+    }
+
+    /* 启动器介绍 */
+    .starter h2 {
+        font-size: 1.5rem;
+        margin: 40px 0 15px;
+    }
+
+    .starter h3 {
+        font-size: 1.3rem;
+    }
+
+    .hmcl, .pcl, .official, .atl {
+        flex-direction: column;
+        gap: 15px;
+    }
+
+    .starter img {
+        width: 100%;
+    }
+
+    /* 底部文字 */
+    .email,
+    .talk {
+        font-size: 14px;
+        padding: 0 10px;
+    }
+
+    /* 段落文字 */
+    .content p {
+        font-size: 16px !important;
+    }
+}
+
+/* 小屏手机（最大宽度 480px） */
+@media (max-width: 480px) {
+    .title-main {
+        font-size: 1.5rem;
+    }
+
+    .title-subtitle {
+        font-size: 0.85rem;
+    }
+
+    .content {
+        padding: 12px 15px;
+        border-radius: 10px;
+    }
+
+    .content button {
+        width: 100%;
+        max-width: none;
+        padding: 10px 15px;
+        font-size: 0.9rem;
+    }
+
+    #search_box-cfm,
+    #search_mcserver {
+        padding: 15px 12px;
+    }
+
+    h1 {
+        font-size: 1.4rem;
+    }
+
+    .other-button {
+        height: 44px;
+        font-size: 15px;
+    }
+
+    /* 滚动条变细 */
+    .sr_background::-webkit-scrollbar,
+    #result_cfm::-webkit-scrollbar,
+    #mcserver_background::-webkit-scrollbar {
+        width: 6px;
+    }
+}
+
+/* 横屏手机优化 */
+@media (max-width: 768px) and (orientation: landscape) {
+    .title-main {
+        font-size: 1.6rem;
+    }
+
+    .content {
+        padding: 15px 20px;
+    }
+
+    .buttons {
+        gap: 8px;
+    }
+
+    .content button {
+        padding: 8px 16px;
+        font-size: 0.85rem;
+    }
+}
