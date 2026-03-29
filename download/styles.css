@@ -5,10 +5,18 @@
     --bg-gradient-light: linear-gradient(135deg, #11da47, #6c95ff, #ff7272);
     --bg-gradient-dark: linear-gradient(135deg, #2e385e, #103e3e, #6c3c59);
 
+    --content-bg-light: rgba(255,255,255,0.12);
+    --content-bg-dark: rgba(20,30,60,0.75);
+
     --text-color-light: #ffffff;
     --text-color-dark: #eeeeee;
 
     --shadow: 0 6px 24px rgba(0,0,0,0.25);
+
+    --scroll-width: 8px;
+    --scroll-track: rgba(255,255,255,0.1);
+    --scroll-thumb: rgba(255,255,255,0.3);
+    --scroll-thumb-hover: rgba(255,255,255,0.5);
 }
 
 /* =========================================================
@@ -29,15 +37,118 @@ body {
    页面结构
    ========================================================= */
 .page {
-    width: 100%;
-    max-width: 1200px;
+    width: 1200px;
     margin: 0 auto;
     padding: 30px 20px 80px;
+    max-width: 80%;
+}
+
+/* =========================================================
+   标题
+   ========================================================= */
+.main-title {
+    text-align: center;
+    margin-bottom: 40px;
+    padding: 30px 20px;
+    position: relative;
+}
+
+.title-main {
+    font-size: 3rem;
+    font-weight: bold;
+    background: linear-gradient(90deg, #ffffff, #a8edea, #fed6e3, #ffffff);
+    background-size: 300% 300%;
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    text-shadow: none;
+    animation: gradientFlow 20s ease infinite;
+    margin-bottom: 12px;
+    letter-spacing: 2px;
+}
+
+@keyframes gradientFlow {
+    0%, 100% { background-position: 0 50%; }
+    50% { background-position: 100% 50%; }
+}
+
+.title-subtitle {
+    font-size: 1.2rem;
+    opacity: 0.9;
+    font-weight: 300;
+    letter-spacing: 1px;
+}
+
+/* 原 h1 样式保留给其他标题使用 */
+h1 {
+    font-size: 1.8rem;
+    text-align: center;
+    margin-bottom: 16px;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+}
+
+h2 {
+    font-size: 2rem;
+    text-align: center;
+    margin: 60px 0 20px;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+}
+
+h3 {
+    font-size: 1.5rem;
+    margin: 30px 0 15px;
+}
+
+/* =========================================================
+   内容卡片
+   ========================================================= */
+.content-card {
+    border-radius: 14px;
+    padding: 30px;
+    margin-bottom: 30px;
+    box-shadow: var(--shadow);
+    transition: box-shadow 0.3s ease, filter 0.3s ease, transform 0.3s ease;
+}
+
+.content-card:hover {
+    box-shadow: 0 10px 40px rgba(0,0,0,0.35);
+    filter: brightness(1.08);
+    transform: translateY(-3px);
+}
+
+/* =========================================================
+   启动器卡片布局
+   ========================================================= */
+.starters {
+    display: flex;
+    gap: 30px;
+    align-items: center;
+    margin: 20px 0;
+    font-size: 1rem;
+}
+
+.starters img {
+    width: 50%;
+    max-width: 400px;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+}
+
+.starters p {
+    margin: 8px 0;
+    line-height: 1.6;
 }
 
 /* =========================================================
    按钮
    ========================================================= */
+.button {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin-top: 20px;
+}
+
 button {
     padding: 10px 22px;
     font-size: 1rem;
@@ -45,6 +156,8 @@ button {
     border: 1px solid rgba(255,255,255,0.4);
     cursor: pointer;
     transition: 0.3s;
+    background: rgba(255,255,255,0.25);
+    color: #ffffff;
 }
 
 button:hover {
@@ -52,39 +165,24 @@ button:hover {
 }
 
 /* =========================================================
-   启动器介绍
+   卡片进入动画
    ========================================================= */
-.page {
-    margin-top: 18px;
+.card-animate {
+    opacity: 0;
+    transform: translateY(40px);
+    transition: opacity 0.6s ease, transform 0.6s ease, box-shadow 0.3s ease !important;
 }
 
-.page h3 {
-    font-size: 1.5rem;
+.card-animate.visible {
+    opacity: 1;
+    transform: translateY(0);
 }
 
-.page h2 {
-    margin: 60px 0 20px;
-    font-size: 2rem;
-    text-align: center;
-}
-
-.starters {
-    display: flex;
-    gap: 30px;
-    align-items: center;
-    margin: 30px 0;
-    font-size: 20px;
-}
-
-.page img {
-    width: 60%;
-    border-radius: 12px;
-}
-
-.button {
-    display: flex;
-    justify-content: left;
-    gap: 15px; /* 调整这里即可 */
+/* =========================================================
+   滚动视差效果
+   ========================================================= */
+.parallax-card {
+    will-change: transform;
 }
 
 /* =========================================================
@@ -94,6 +192,10 @@ button:hover {
     body {
         background: var(--bg-gradient-light);
         color: var(--text-color-light);
+    }
+
+    .content-card {
+        background: var(--content-bg-light);
     }
 
     button {
@@ -111,8 +213,154 @@ button:hover {
         color: var(--text-color-dark);
     }
 
+    .content-card {
+        background: var(--content-bg-dark);
+    }
+
     button {
         background: rgba(255,255,255,0.25);
         color: #ffffff;
+    }
+}
+
+/* =========================================================
+   输入框焦点态（通用）
+   ========================================================= */
+input:focus,
+select:focus {
+    outline: none;
+    box-shadow: 0 0 0 2px rgba(120,180,255,0.45);
+}
+
+/* =========================================================
+   移动端响应式优化
+   ========================================================= */
+
+/* 平板和移动端（最大宽度 1024px） */
+@media (max-width: 1024px) {
+    .page {
+        max-width: 95%;
+        padding: 20px 15px 60px;
+    }
+
+    .title-main {
+        font-size: 2.2rem;
+    }
+
+    .title-subtitle {
+        font-size: 1rem;
+    }
+
+    .content-card {
+        padding: 20px 25px;
+    }
+}
+
+/* 移动端（最大宽度 768px） */
+@media (max-width: 768px) {
+    .page {
+        max-width: 95%;
+        padding: 15px 10px 40px;
+    }
+
+    .main-title {
+        margin-bottom: 25px;
+        padding: 20px 15px;
+    }
+
+    .title-main {
+        font-size: 1.8rem;
+        letter-spacing: 1px;
+    }
+
+    .title-subtitle {
+        font-size: 0.9rem;
+    }
+
+    .content-card {
+        padding: 15px 20px;
+        margin-bottom: 20px;
+        border-radius: 12px;
+    }
+
+    .starters {
+        flex-direction: column;
+        gap: 15px;
+    }
+
+    .starters img {
+        width: 100%;
+        max-width: none;
+    }
+
+    button {
+        width: 100%;
+        max-width: 280px;
+        padding: 12px 20px;
+        font-size: 0.95rem;
+    }
+
+    .button {
+        gap: 10px;
+    }
+
+    h2 {
+        font-size: 1.5rem;
+        margin: 40px 0 15px;
+    }
+
+    h3 {
+        font-size: 1.3rem;
+    }
+}
+
+/* 小屏手机（最大宽度 480px） */
+@media (max-width: 480px) {
+    .title-main {
+        font-size: 1.5rem;
+    }
+
+    .title-subtitle {
+        font-size: 0.85rem;
+    }
+
+    .content-card {
+        padding: 12px 15px;
+        border-radius: 10px;
+    }
+
+    button {
+        width: 100%;
+        max-width: none;
+        padding: 10px 15px;
+        font-size: 0.9rem;
+    }
+
+    h2 {
+        font-size: 1.4rem;
+    }
+
+    h3 {
+        font-size: 1.2rem;
+    }
+}
+
+/* 横屏手机优化 */
+@media (max-width: 768px) and (orientation: landscape) {
+    .title-main {
+        font-size: 1.6rem;
+    }
+
+    .content-card {
+        padding: 15px 20px;
+    }
+
+    .button {
+        gap: 8px;
+    }
+
+    button {
+        padding: 8px 16px;
+        font-size: 0.85rem;
     }
 }

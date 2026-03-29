@@ -23,3 +23,22 @@ async function download(objectKey="test.zip") {
     }
 }
 
+// 按钮点击事件处理（与主界面保持一致）
+document.addEventListener('DOMContentLoaded', () => {
+    document.querySelectorAll('.button button').forEach(button => {
+        button.addEventListener('click', () => {
+            const message = button.dataset.message;
+            const url = button.dataset.url;
+
+            if (message) alert(message);
+            if (url) {
+                try {
+                    window.open(url, '_blank');
+                } catch (error) {
+                    window.location.href = url;
+                }
+            }
+        });
+    });
+});
+
