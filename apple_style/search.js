@@ -1,0 +1,117 @@
+document.addEventListener('DOMContentLoaded', () => {
+    const searchInput = document.getElementById('search_cfm');
+    const searchButton = document.getElementById('search_button');
+    const resultContainer = document.getElementById('result_cfm');
+
+    searchButton.addEventListener('click', async () => {
+        const query = searchInput.value.trim();
+        if (!query) return alert('请输入搜索关键词');
+
+        const category = document.getElementById('category')?.value || 'mod';
+        const version = document.getElementById('version')?.value || '';
+        const loader = document.getElementById('loader')?.value || '';
+        const source = document.getElementById('source')?.value || 'all';
+
+        resultContainer.innerHTML = '<p>正在搜索中，请稍候...</p>';
+
+        const searches = [];
+        if (source === 'curseforge' || source === 'all') searches.push(searchCurseForge(query, category, version, loader));
+        if (source === 'modrinth' || source === 'all') searches.push(searchModrinth(query, category, version, loader));
+
+        try {
+            const resultsArr = await Promise.all(searches);
+            const results = resultsArr.flat();
+
+            if (!results.length) {
+                resultContainer.innerHTML = '<p>没有找到相关内容</p>';
+                return;
+            }
+
+            resultContainer.innerHTML = results.map(item => `
+        <div class="mod-result">
+          <img src="${item.logoUrl || 'https://via.placeholder.com/80?text=No+Logo'}" alt="${item.name} logo">
+          <div class="mod-content">
+            <h3><a href="${item.url}" target="_blank">${item.name}</a></h3>
+            <div class="mod-summary">${item.summary || '暂无简介'}</div>
+            <div class="mod-meta">
+              平台：${item.platform} | 下载次数：${item.downloadCount}
+            </div>
+          </div>
+        </div>
+      `).join('');
+        } catch (error) {
+            console.error('搜索失败:', error);
+            resultContainer.innerHTML = '<p>搜索出错，请稍后再试</p>';
+        }
+    });
+
+    // CurseForge 搜索
+    async function searchCurseForge(query, category, version, loader) {
+        const loaderMap = {forge: 1, fabric: 4, quilt: 5, neoforge: 6};
+        const categoryMap = {mod: 6, resourcepack: 12, shader: 6552};
+
+        const params = new URLSearchParams({
+            gameId: 432, // Minecraft
+            searchFilter: query
+        });
+
+        if (category !== 'all' && categoryMap[category]) {
+            params.append('classId', categoryMap[category]);
+        }
+
+        if (version) params.append('gameVersion', version);
+        if (loader && loaderMap[loader]) params.append('modLoaderType', loaderMap[loader]);
+
+        try {
+            const res = await fetch(`https://api.curseforge.com/v1/mods/search?${params.toString()}`, {
+                headers: {
+                    'x-api-key': '$2a$10$6QnlrKOnAwqIbxdGMUe3A.hPjswDK9Ob1pn3TI/E6xu.4rKe5ojMy'
+                }
+            });
+            const data = await res.json();
+            return (data.data || []).map(item => ({
+                name: item.name,
+                url: item.links?.websiteUrl || `https://www.curseforge.com/minecraft/${category}s/${item.slug}`,
+                platform: 'CurseForge',
+                summary: item.summary,
+                logoUrl: item.logo?.thumbnailUrl,
+                downloadCount: item.downloadCount
+            }));
+        } catch (error) {
+            console.error('CurseForge 搜索失败:', error);
+            return [];
+        }
+    }
+
+    // Modrinth 搜索
+    async function searchModrinth(query, category, version, loader) {
+        let facets = [];
+
+        if (category !== 'all') {
+            facets.push(`["project_type:${category}"]`);
+        }
+
+        if (version) facets.push(`["versions:${version}"]`);
+        if (loader) facets.push(`["categories:${loader}"]`);
+
+        const url = `https://api.modrinth.com/v2/search?query=${encodeURIComponent(query)}${facets.length ? `&facets=[${facets.join(',')}]` : ''}`;
+
+        try {
+            const res = await fetch(url, {
+                headers: {'Content-Type': 'application/json'}
+            });
+            const data = await res.json();
+            return (data.hits || []).map(item => ({
+                name: item.title,
+                url: `https://modrinth.com/${item.project_type}/${item.slug}`,
+                platform: 'Modrinth',
+                summary: item.excerpt,
+                logoUrl: item.icon_url,
+                downloadCount: item.downloads
+            }));
+        } catch (error) {
+            console.error('Modrinth 搜索失败:', error);
+            return [];
+        }
+    }
+});

@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Minecraft 整合站</title>
+	<meta name="description" content="Minecraft 启动器下载 | 模组光影整合 | 服务器查询工具">
+	<link rel="icon" href="favicon.png" type="image/x-icon">
+	<link rel="stylesheet" href="styles.css">
+	<meta name="msvalidate.01" content="399132E56040D2A0806C897ACD833881" />
+</head>
+
+<body>
+<div class="page">
+	<div class="main-title">
+		<h1 class="title-main">Minecraft 整合站</h1>
+		<p class="title-subtitle">启动器下载 · 模组光影整合 · 服务器查询工具</p>
+	</div>
+	<section class="content card-animate parallax-card">
+		<p style="font-size: 18px">	本站提供 Minecraft 启动器下载、跳转模组资源、光影提供的平台，
+		涵盖 HMCL、PCL2、Modrinth、CurseForge 等主流生态。</p>
+	</section>
+<div class="content card-animate parallax-card">
+	<h1>下载 Minecraft 并启动</h1>
+    <div class="buttons">
+        <button data-url="https://mcstart.work/download/" style="padding: 10px 40%;">启动器介绍&下载站</button>
+    </div>
+	<br>
+	<p style="font-size: 20px">以下大部分为 Windows 版本启动器</p>
+	<div class="buttons">
+		<button data-url="https://hmcl.huangyuhui.net/download/" data-message="建议选择开发版下载">HMCL 启动器</button>
+		<button data-url="https://bbsmc.net/software/pcl">PCL2 启动器</button>
+        <button data-url="https://gitee.com/pcl-community/PCL2-CE/releases">PCL CE（PCL 社区版）</button>
+		<button data-url="https://atlauncher.com/downloads">ALauncher 启动器</button>
+		<button data-url="https://www.minecraft.net/zh-hans/download">Minecraft 官方启动器</button>
+	</div><br>
+	<p style="font-size: 20px">模组（整合包）</p>
+	<div class="buttons">
+		<button data-url='https://www.curseforge.com/minecraft/search?class=mc-mods'>Curseforge 模组下载</button>
+		<button data-url='https://www.curseforge.com/minecraft/search?page=1&pageSize=20&sortBy=relevancy&class=modpacks'>Curseforge 整合包下载</button>
+		<button data-url='https://modrinth.com/mods'>Modrinth 模组下载</button>
+		<button data-url='https://modrinth.com/modpacks'>Modrinth 整合包下载</button>
+		<button data-url='https://bbsmc.net/mods'>BBSMC 模组下载</button>
+		<button data-url='https://bbsmc.net/modpacks'>BBSMC 整合包下载</button>
+		<button data-url='https://www.mcmod.cn/modlist.html'>MC 百科 Mod 检索</button>
+		<button data-url='https://www.mcmod.cn/modpack.html'>MC 百科 整合包检索</button>
+	</div><br>
+
+	<p style="font-size: 20px">光影</p>
+	<div class="buttons">
+		<button data-url='https://www.curseforge.com/minecraft/search?class=shaders'>Curseforge 光影下载</button>
+		<button data-url='https://modrinth.com/shaders'>Modrinth 光影下载</button>
+		<button data-url='https://bbsmc.net/shaders'>BBSMC 光影下载</button>
+	</div><br>
+    <p style="font-size: 20px">联机</p>
+    <div class="buttons">
+        <button data-url="https://www.radmin-lan.cn/">Radmin Lan 蓝盾</button>
+        <button data-url="https://www.natfrp.com/?page=panel&module=download" data-message="该功能需要已成年实名认证">樱花穿透</button>
+        <button data-url="https://gitee.com/burningtnt/Terracotta/releases" data-message="HMCL 与 PCL CE 已内置类似功能">Terracotta 陶瓦联机</button>
+        <button data-url="https://ipv6ready.me/index.html.zh_CN" data-message="联机成员均有 IPv6 时，可在连接填写 ip 时直接使用 IPv6 进行联机">IPv6 连接测试</button>
+        <button data-url='https://www.rainyun.com/NTM4NTEw_'>雨云服务器</button>
+    </div><br>
+	<p style="font-size: 20px">其他</p>
+	<div class="buttons">
+		<button data-url='https://www.mcmod.cn/'>MC 百科</button>
+		<button data-url='https://mirrors.tuna.tsinghua.edu.cn/Adoptium/'>Java 下载（清华源）</button>
+		<button data-url='https://klpbbs.com/'>苦力怕论坛</button>
+		<button data-url='https://zh.minecraft.wiki/'>中文 Minecraft Wiki</button>
+        <button data-url='https://www.dogfight360.com/blog/18627/'>多平台 hosts 修改工具</button>
+		<button data-url='https://s.team/'>Steam</button>
+	</div>
+</div>
+
+
+<form id="search_mcserver" class="card-animate parallax-card">
+    <h2 style="margin-bottom: 15px;">Minecraft 服务器状态查询</h2>
+
+    <label for="server_ip">服务器地址：</label><br>
+    <input
+            id="server_ip"
+            type="text"
+            placeholder="示例：mc.hypixel.net 或 127.0.0.1"
+            style="width: 90%; height: 50px; font-size: 18px; margin: 10px 0;">
+
+    <div class="form-row">
+        <label for="server_type">版本：</label>
+        <select id="server_type">
+            <option value="java">Java 版</option>
+            <option value="bedrock">基岩版</option>
+        </select>
+    </div>
+
+    <div class="form-row">
+        <label for="server_port">端口：</label>
+        <input
+                id="server_port"
+                type="number"
+                placeholder="Java 可留空基岩默认 19132"
+                style="width: 200px;">
+    </div>
+
+    <button type="button" class="other-button" id="query_server_btn">
+        查询
+    </button>
+</form>
+
+<div id="mcserver_background" class="sr_background" style="display:none;">
+    <div id="mcserver_result"></div>
+</div>
+
+<form id="search_box-cfm" class="card-animate parallax-card">
+	<h2 style="margin-bottom: 10px;">快速搜索</h2>
+	<label for="search_cfm">关键词：</label>
+	<input id="search_cfm" maxlength="500" name="message" placeholder="输入名称或关键字">
+	<br><br>
+	<div class="form-row">
+		<label for="category">类型：</label>
+		<select id="category">
+			<option value="all">全部</option>
+			<option value="mod">模组 (Mods)</option>
+			<option value="shader">光影 (Shaders)</option>
+			<option value="resourcepack">资源包 (Resource Packs)</option>
+		</select>
+	</div>
+	<div class="form-row">
+		<label for="version">版本：</label>
+		<select id="version">
+			<option value="">不限</option>
+		</select>
+	</div>
+	<div class="form-row">
+		<label for="loader">加载器：</label>
+		<select id="loader">
+			<option value="">不限</option>
+			<option value="fabric">Fabric</option>
+			<option value="forge">Forge</option>
+			<option value="quilt">Quilt</option>
+			<option value="neoforge">NeoForge</option>
+		</select>
+	</div>
+	<div class="form-row">
+		<label for="source">下载源：</label>
+		<select id="source">
+			<option value="all">全部</option>
+			<option value="curseforge">CurseForge</option>
+			<option value="modrinth">Modrinth</option>
+		</select>
+	</div>
+
+	<div>
+		<button type="button" class="other-button" id="search_button">提交</button>
+	</div>
+</form>
+
+
+<div id="result_cfm"></div>
+
+<br><br><br><br>
+
+
+
+<!--<br>-->
+<!--<form id="suggests">-->
+<!--	<h1 class="title-smarter" style="left:5%">建议反馈</h1>-->
+<!--	<label for="message"></label><input id="message" maxlength="500" name="message">-->
+<!--	<div>-->
+<!--		<button type="submit" class="other-button">提交</button>-->
+<!--	</div>-->
+<!--</form>-->
+
+
+<!-- 底部固定文字 -->
+<br><br><br><br><br><br><br>
+<p class="email">联系方式：yzwou@foxmail.com</p>
+<p class="talk">本网站仅供学习和交流使用</p>
+
+</div>
+</body>
+<script src="script.js"></script>
+<script src="send.js"></script>
+<script src="search.js"></script>
+<script src="byme.js"></script>
+<script src="mcserver.js"></script>
+</html>

@@ -24,13 +24,9 @@ async function storeData(content) {
     }
 }
 
-// 只在页面包含建议表单时绑定，避免影响其他页面脚本。
-const suggestsForm = document.getElementById("suggests");
-
-if (suggestsForm) {
-    suggestsForm.addEventListener("submit", (e) => {
-        e.preventDefault();
-        const message = document.getElementById("message")?.value || "";
-        storeData(message);
-    });
-}
+// 绑定表单提交事件
+document.getElementById("suggests").addEventListener("submit", (e) => {
+    e.preventDefault(); // 阻止表单默认提交
+    const message = document.getElementById("message").value; // 获取用户输入
+    storeData(message); // 调用函数上传数据
+});
